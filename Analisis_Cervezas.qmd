@@ -1,7 +1,7 @@
 ---
 title: "Análisis de mercado de cervezas"
 subtitle: "Componentes Principales y Análisis Factorial"
-author: "Guillermo"
+author: "Guillermo Mazana"
 date: last-modified
 date-format: "DD [de] MMMM, YYYY"
 lang: es
