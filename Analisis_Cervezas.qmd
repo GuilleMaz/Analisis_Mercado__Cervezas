@@ -67,7 +67,6 @@ datos_analisis <- datos_t[, !(names(datos_t) %in% c("Price", "Market share"))]
 datos_analisis[] <- lapply(datos_analisis, function(x) as.numeric(as.character(x)))
 ```
 
-
 Sumario de estadísticas:
 
 ```{r}
@@ -110,7 +109,6 @@ if (nrow(correlaciones_altas) > 0) {
 }
 ```
 
-
 Vemos que hay muchísimas variables muy altamente correlacionadas.
 
 ## Componentes Principales
@@ -121,110 +119,106 @@ Su objetivo principal es transformar un conjunto de datos que contiene múltiple
 
 A nivel conceptual y matemático, el ACP se rige por los siguientes principios:
 
-- **Componentes Principales**: Las nuevas variables creadas se denominan componentes principales. Estas son combinaciones lineales de las variables originales.
+-   **Componentes Principales**: Las nuevas variables creadas se denominan componentes principales. Estas son combinaciones lineales de las variables originales.
 
-- **Maximización de la varianza**: Los componentes se calculan de manera secuencial. El primer componente principal se traza en la dirección que captura la mayor proporción de la varianza (dispersión) de los datos. El segundo componente captura la máxima varianza restante, con la condición estricta de ser ortogonal (perpendicular y no correlacionado) al primero. Este proceso se repite hasta igualar el número de variables originales.
+-   **Maximización de la varianza**: Los componentes se calculan de manera secuencial. El primer componente principal se traza en la dirección que captura la mayor proporción de la varianza (dispersión) de los datos. El segundo componente captura la máxima varianza restante, con la condición estricta de ser ortogonal (perpendicular y no correlacionado) al primero. Este proceso se repite hasta igualar el número de variables originales.
 
-- **Reducción**: Dado que los primeros componentes concentran la inmensa mayoría de la información útil, los analistas pueden descartar los últimos componentes (que suelen representar "ruido" estadístico), reduciendo así drásticamente la complejidad del modelo.
+-   **Reducción**: Dado que los primeros componentes concentran la inmensa mayoría de la información útil, los analistas pueden descartar los últimos componentes (que suelen representar "ruido" estadístico), reduciendo así drásticamente la complejidad del modelo.
 
 En la práctica, el análisis de componentes principales se utiliza ampliamente para simplificar el procesamiento de grandes volúmenes de datos, facilitar la visualización en dos o tres dimensiones, mejorar la eficiencia computacional y evitar problemas de multicolinealidad en modelos de aprendizaje automático predictivos.
 
-Sea $R$ la matriz de correlación, resolvemos la ecuación característica, donde $\lambda$ son los valores propios (varianza) y que, por tanto, ccalculando $\sqrt{\lambda}$ obtenemos la desviación típica: 
-$$\det(R - \lambda I) = 0$$
-*La suma de todos los autovalores es igual al número de variables que tenemos*
+Sea $R$ la matriz de correlación, resolvemos la ecuación característica, donde $\lambda$ son los valores propios (varianza) y que, por tanto, ccalculando $\sqrt{\lambda}$ obtenemos la desviación típica: $$\det(R - \lambda I) = 0$$ *La suma de todos los autovalores es igual al número de variables que tenemos*
 
 ```{r}
 # scale. = TRUE para estandarizar las variables
 modelo_pca <- prcomp(datos_analisis, center = TRUE, scale. = TRUE)
 summary(modelo_pca)
 ```
+
 Resultados:
 
-- **Standard deviation**. Un valor **mayor que 1** nos indica que ese componente explica más información que una sola de las variables originales por separado (suponiendo que los datos están estandarizados). En este caso, tenemos que los tres primeros componentes ($PC1$, $PC2$ y $PC3$) son muy potentes porque tienen desviaciones significativamente altas ($3.25$, $2.53$ y $1.80$).
+-   **Standard deviation**. Un valor **mayor que 1** nos indica que ese componente explica más información que una sola de las variables originales por separado (suponiendo que los datos están estandarizados). En este caso, tenemos que los tres primeros componentes ($PC1$, $PC2$ y $PC3$) son muy potentes porque tienen desviaciones significativamente altas ($3.25$, $2.53$ y $1.80$).
 
-- **Proportion of Variance**. Es el dato más importante del análisis. Indica qué porcentaje del "ruido" o información total del archivo original está contenido en ese componente específico.
+-   **Proportion of Variance**. Es el dato más importante del análisis. Indica qué porcentaje del "ruido" o información total del archivo original está contenido en ese componente específico.
 
-  - PC1 (0.4808): El primer componente por sí solo captura el $48.08\%$ de toda la variabilidad de las percepciones de las cervezas. Casi la mitad de las diferencias entre marcas se explican por un solo eje.
-  
-  - PC2 (0.2919): El segundo componente captura el $29.19\%$. 
-  
-  - A partir del $PC4$, la proporción cae drásticamente ($2.6\%$), lo que significa que esos componentes ya solo capturan detalles irrelevantes o errores de medición.
-  
-- **Cumulative Proportion**. Es la suma consecutiva de la fila anterior. Ayuda a decidir con cuántos componentes debemos quedarnos para el estudio:
+    -   PC1 (0.4808): El primer componente por sí solo captura el $48.08\%$ de toda la variabilidad de las percepciones de las cervezas. Casi la mitad de las diferencias entre marcas se explican por un solo eje.
 
-  - PC1 + PC2 = 0.7728: Esto significa que si solo usamos los dos primeros componentes (los que aparecen en el Biplot), estaremos visualizando el $77.28\%$ de toda la información del estudio. En ciencias sociales y marketing, superar el $70\%$ es un resultado excelente.
-  
-  - PC1 + PC2 + PC3 = 0.9216: Si icluimos un tercer eje, llegaríamos al $92.16\%$ de la información.
+    -   PC2 (0.2919): El segundo componente captura el $29.19\%$.
 
+    -   A partir del $PC4$, la proporción cae drásticamente ($2.6\%$), lo que significa que esos componentes ya solo capturan detalles irrelevantes o errores de medición.
+
+-   **Cumulative Proportion**. Es la suma consecutiva de la fila anterior. Ayuda a decidir con cuántos componentes debemos quedarnos para el estudio:
+
+    -   PC1 + PC2 = 0.7728: Esto significa que si solo usamos los dos primeros componentes (los que aparecen en el Biplot), estaremos visualizando el $77.28\%$ de toda la información del estudio. En ciencias sociales y marketing, superar el $70\%$ es un resultado excelente.
+
+    -   PC1 + PC2 + PC3 = 0.9216: Si icluimos un tercer eje, llegaríamos al $92.16\%$ de la información.
 
 Ahora, mostramos los pesos de las variables en los componentes 1 y 2 así como las puntuaciones de las marcas
-
 
 ```{r}
 # Pesos
 round(modelo_pca$rotation[, 1:2], 2)
 ```
+
 Para interpretar los pesos, debemos de fijarnos en los valores más grandes, en módulo:
 
-- **Componente Principal 1 (PC1)**: El eje del "Estatus / Exclusividad vs. Cotidianidad". Si observamos la columna PC1, vemos una clara oposición entre dos tipos de consumo:
+-   **Componente Principal 1 (PC1)**: El eje del "Estatus / Exclusividad vs. Cotidianidad". Si observamos la columna PC1, vemos una clara oposición entre dos tipos de consumo:
 
-  - Valores muy positivos (El lado del Estatus/Lujo): 
-  
-    - Expensive (0.28)
-    
-    - International (0.26)
+    -   Valores muy positivos (El lado del Estatus/Lujo):
 
-    - Sophisticated (0.26)
+        -   Expensive (0.28)
 
-    - Premium (0.22)
+        -   International (0.26)
 
-    - Night club (0.22)
+        -   Sophisticated (0.26)
 
-    - To be seen (0.21)
-    
-    - *Significado*: Las marcas que puntúen en positivo en este eje son percibidas como cervezas internacionales, caras, sofisticadas y orientadas al ocio nocturno y el "postureo" (para ser visto con ellas).
-    
-  - Valores muy negativos (El lado de lo Cotidiano/Familiar):
-  
-    - Family (-0.30)
+        -   Premium (0.22)
 
-    - With food (-0.28)
+        -   Night club (0.22)
 
-    - Availability (Store) (-0.27)
+        -   To be seen (0.21)
 
-    - National (-0.27)
+        -   *Significado*: Las marcas que puntúen en positivo en este eje son percibidas como cervezas internacionales, caras, sofisticadas y orientadas al ocio nocturno y el "postureo" (para ser visto con ellas).
 
-    - Value (buena relación calidad/precio) (-0.26)
+    -   Valores muy negativos (El lado de lo Cotidiano/Familiar):
 
-    - EverydayHome (-0.24)
-    
-    - *Significado*: Las marcas con puntuaciones negativas aquí son las cervezas "de toda la vida": nacionales, fáciles de encontrar en el súper, para comer, para estar en familia o consumir a diario en casa, y con buen precio.
-    
-    
-- **Componente Principal 2 (PC2)**: El eje de "Ligereza / Juventud vs. Intensidad". Si miramos la columna PC2, la diferenciación cambia y se centra más en el sabor y el público:
+        -   Family (-0.30)
 
-  - Valores muy positivos (El lado Ligero y Juvenil):
-  
-    - Youthful (0.36) - Es la variable que más define este eje.
+        -   With food (-0.28)
 
-    - Smooth (Suave) (0.32)
+        -   Availability (Store) (-0.27)
 
-    - EasyToDrink (0.30)
+        -   National (-0.27)
 
-    - Refreshing (0.30)
+        -   Value (buena relación calidad/precio) (-0.26)
 
-    - Watery (Aguada) (0.27)
+        -   EverydayHome (-0.24)
 
-    - WellKnown (0.23)
-    
-    - *Significado*: Cervezas muy fáciles de beber, refrescantes, suaves (incluso percibidas como algo aguadas) y fuertemente asociadas a un público muy joven y a fiestas (Home party drink tiene 0.20).
-    
-  - Valores muy negativos (El lado Intenso):
-  
-    - Bitter (Amarga) (-0.32)
+        -   *Significado*: Las marcas con puntuaciones negativas aquí son las cervezas "de toda la vida": nacionales, fáciles de encontrar en el súper, para comer, para estar en familia o consumir a diario en casa, y con buen precio.
 
-    - *Significado*: Básicamente, este lado se define por la oposición a lo anterior. Son cervezas donde predomina un sabor intenso y amargo.
+-   **Componente Principal 2 (PC2)**: El eje de "Ligereza / Juventud vs. Intensidad". Si miramos la columna PC2, la diferenciación cambia y se centra más en el sabor y el público:
 
+    -   Valores muy positivos (El lado Ligero y Juvenil):
+
+        -   Youthful (0.36) - Es la variable que más define este eje.
+
+        -   Smooth (Suave) (0.32)
+
+        -   EasyToDrink (0.30)
+
+        -   Refreshing (0.30)
+
+        -   Watery (Aguada) (0.27)
+
+        -   WellKnown (0.23)
+
+        -   *Significado*: Cervezas muy fáciles de beber, refrescantes, suaves (incluso percibidas como algo aguadas) y fuertemente asociadas a un público muy joven y a fiestas (Home party drink tiene 0.20).
+
+    -   Valores muy negativos (El lado Intenso):
+
+        -   Bitter (Amarga) (-0.32)
+
+        -   *Significado*: Básicamente, este lado se define por la oposición a lo anterior. Son cervezas donde predomina un sabor intenso y amargo.
 
 Finalmente, veamos los scores o puntuaciones:
 
@@ -232,48 +226,48 @@ Finalmente, veamos los scores o puntuaciones:
 # Puntuaciones
 round(modelo_pca$x[, 1:2], 2)
 ```
+
 Tenemos, como hemos visto antes, dos ejes:
 
-- Eje X (PC1): Valores negativos = Cerveza Nacional, Tradicional, Cotidiana y Económica. / Valores positivos = Cerveza Internacional, Premium, Cara y Sofisticada.
+-   Eje X (PC1): Valores negativos = Cerveza Nacional, Tradicional, Cotidiana y Económica. / Valores positivos = Cerveza Internacional, Premium, Cara y Sofisticada.
 
-- Eje Y (PC2): Valores negativos = Sabor Amargo e Intenso. / Valores positivos = Sabor Suave, Refrescante, Fácil de beber y Juvenil.
+-   Eje Y (PC2): Valores negativos = Sabor Amargo e Intenso. / Valores positivos = Sabor Suave, Refrescante, Fácil de beber y Juvenil.
 
 Con estas coordenadas, podemos dividir el mercado en 3 grandes grupos o territorios competitivos:
 
-1. El bloque "Nacional y Cotidiano" (A la izquierda del mapa)
-  
-  - Mahou (-3.77, 0.43)
+1.  El bloque "Nacional y Cotidiano" (A la izquierda del mapa)
 
-  - Cruzcampo (-3.66, -0.70)
+-   Mahou (-3.77, 0.43)
 
-  - San Miguel (-3.28, -0.38)
+-   Cruzcampo (-3.66, -0.70)
 
-  - Estrella (-2.14, -1.41)
+-   San Miguel (-3.28, -0.38)
 
-  - Amstel (-0.95, -2.24)
-    
-  - *Interpretación*: Todas tienen valores fuertemente negativos en el PC1. Estas son las cervezas "de toda la vida". El consumidor las percibe como marcas para tomar en familia, comiendo o a diario en casa, con buena relación calidad-precio y muy disponibles. *Diferenciación interna*: Amstel y Estrella se perciben como las más amargas/intensas de este grupo (PC2 negativo), mientras que Mahou es la más suave (PC2 ligeramente positivo). Estas marcas compiten a muerte entre ellas por el mismo espacio mental.
-    
-2. El bloque "Fiesta, Juventud y Refresco" (Arriba en el mapa)
-  
-  - Coronita (1.95, 4.33)
-    
-  - Heineken (0.29, 4.21)
-    
-  - *Interpretación*: Destacan brutalmente por tener un PC2 altísimo (más de 4 puntos). Son las reinas absolutas de la percepción "Suave, Refrescante, Fácil de beber y Juvenil". *Diferenciación interna*: Coronita (PC1 de 1.95) se percibe como más cara, de club nocturno o de "postureo" que Heineken, la cual es más neutra en el eje del precio/exclusividad (PC1 cercano a 0).
-    
-3. El bloque "Premium, Internacional y/o Intenso" (A la derecha / Abajo)
-  
-  - Bud (5.13, -0.82)
+-   Estrella (-2.14, -1.41)
 
-  - VollDamm (3.68, -3.57)
+-   Amstel (-0.95, -2.24)
 
-  - Carlsberg (2.75, 0.14)
-    
-  - *Interpretación*: Tienen valores positivos muy altos en el PC1. Se perciben como cervezas de alto estatus, caras o fuertemente internacionales. *Diferenciación interna*: VollDamm tiene un perfil muy extremo: es Premium/Cara (3.68) pero también es la cerveza percibida como más amarga y fuerte de todo el estudio con mucha diferencia (PC2 de -3.57). Su posicionamiento es "Intensidad y Calidad". Bud es percibida como la más cara o exclusiva del estudio (el PC1 más alto de todos: 5.13), con un toque de amargor. Carlsberg se percibe como Premium (2.75), pero no se asocia ni con un sabor amargo ni con uno especialmente ligero o juvenil (está justo en el medio con un PC2 de 0.14).
-    
+-   *Interpretación*: Todas tienen valores fuertemente negativos en el PC1. Estas son las cervezas "de toda la vida". El consumidor las percibe como marcas para tomar en familia, comiendo o a diario en casa, con buena relación calidad-precio y muy disponibles. *Diferenciación interna*: Amstel y Estrella se perciben como las más amargas/intensas de este grupo (PC2 negativo), mientras que Mahou es la más suave (PC2 ligeramente positivo). Estas marcas compiten a muerte entre ellas por el mismo espacio mental.
+
+2.  El bloque "Fiesta, Juventud y Refresco" (Arriba en el mapa)
+
+-   Coronita (1.95, 4.33)
+
+-   Heineken (0.29, 4.21)
+
+-   *Interpretación*: Destacan brutalmente por tener un PC2 altísimo (más de 4 puntos). Son las reinas absolutas de la percepción "Suave, Refrescante, Fácil de beber y Juvenil". *Diferenciación interna*: Coronita (PC1 de 1.95) se percibe como más cara, de club nocturno o de "postureo" que Heineken, la cual es más neutra en el eje del precio/exclusividad (PC1 cercano a 0).
+
+3.  El bloque "Premium, Internacional y/o Intenso" (A la derecha / Abajo)
+
+-   Bud (5.13, -0.82)
+
+-   VollDamm (3.68, -3.57)
+
+-   Carlsberg (2.75, 0.14)
+
+-   *Interpretación*: Tienen valores positivos muy altos en el PC1. Se perciben como cervezas de alto estatus, caras o fuertemente internacionales. *Diferenciación interna*: VollDamm tiene un perfil muy extremo: es Premium/Cara (3.68) pero también es la cerveza percibida como más amarga y fuerte de todo el estudio con mucha diferencia (PC2 de -3.57). Su posicionamiento es "Intensidad y Calidad". Bud es percibida como la más cara o exclusiva del estudio (el PC1 más alto de todos: 5.13), con un toque de amargor. Carlsberg se percibe como Premium (2.75), pero no se asocia ni con un sabor amargo ni con uno especialmente ligero o juvenil (está justo en el medio con un PC2 de 0.14).
+
 En el gráfico Biplot siguiente, veremos todo lo anterior de forma visual:
-
 
 ```{r}
 # BIPLOT
@@ -282,38 +276,33 @@ biplot(modelo_pca, scale = 0, cex = 0.8, col = c("black", "red"),
        main = "Biplot PCA")
 ```
 
-
-
 ## Análisis Factorial
 
 El **Análisis Factorial** (AF) es una técnica estadística multivariante cuyo propósito fundamental es identificar la estructura subyacente de un conjunto de datos. Busca explicar las correlaciones observadas entre un gran número de variables manifiestas (observables) a través de un número menor de variables latentes (no observables), que reciben el nombre de **factores**.
 
 A diferencia del Análisis de Componentes Principales (ACP) —que es un método de reducción de datos empíricos que intenta maximizar la varianza total explicada—, el Análisis Factorial parte de un modelo teórico. Asume que la varianza de cada variable se divide en dos partes:
 
-1. **Comunalidad**: La varianza compartida con otras variables (la que explican los factores comunes).
+1.  **Comunalidad**: La varianza compartida con otras variables (la que explican los factores comunes).
 
-2. **Especificidad (y error)**: La varianza única e intrínseca de esa variable concreta.
+2.  **Especificidad (y error)**: La varianza única e intrínseca de esa variable concreta.
 
 El AF busca modelar únicamente esa varianza compartida. Es especialmente útil en ciencias sociales y estudios de mercado para medir constructos abstractos (como la "lealtad de marca", la "sofisticación" o la "calidad percibida") que no pueden medirse con una sola pregunta.
 
 En el caso de nuestros datos **no es estadísticamente ni matemáticamente viable realizar un Análisis Factorial** utilizando la matriz de percepciones completa (22 atributos sobre 10 marcas de cerveza), por dos razones principales:
 
-1. **Problema de dimensionalidad (Matriz Singular)**: En nuestro conjunto de datos, el número de variables o atributos ($P = 22$) es superior al número de observaciones o marcas ($N = 10$). Matemáticamente, esto genera una matriz de correlación "singular" o no definida positiva. Su determinante es cero o cercano a cero, lo que imposibilita la inversión de la matriz, un paso algebraico indispensable para los algoritmos de extracción de factores (como Máxima Verosimilitud).
+1.  **Problema de dimensionalidad (Matriz Singular)**: En nuestro conjunto de datos, el número de variables o atributos ($P = 22$) es superior al número de observaciones o marcas ($N = 10$). Matemáticamente, esto genera una matriz de correlación "singular" o no definida positiva. Su determinante es cero o cercano a cero, lo que imposibilita la inversión de la matriz, un paso algebraico indispensable para los algoritmos de extracción de factores (como Máxima Verosimilitud).
 
-2. **Tamaño muestral crítico**: La literatura estadística (ej. Hair et al., Comrey y Lee) establece reglas estrictas para el Análisis Factorial Exploratorio. Se exige un **tamaño de muestra mínimo absoluto de 50 observaciones (idealmente $>100$)** y una ratio de **al menos 5 observaciones por cada variable analizada**. Con 10 marcas, carecemos de grados de libertad suficientes; los factores extraídos serían fruto del azar ("ruido" estadístico) y no serían generalizables. Pruebas formales de adecuación muestral, como el estadístico KMO (Kaiser-Meyer-Olkin), arrojarían resultados inaceptables o darían error computacional.
+2.  **Tamaño muestral crítico**: La literatura estadística (ej. Hair et al., Comrey y Lee) establece reglas estrictas para el Análisis Factorial Exploratorio. Se exige un **tamaño de muestra mínimo absoluto de 50 observaciones (idealmente** $>100$) y una ratio de **al menos 5 observaciones por cada variable analizada**. Con 10 marcas, carecemos de grados de libertad suficientes; los factores extraídos serían fruto del azar ("ruido" estadístico) y no serían generalizables. Pruebas formales de adecuación muestral, como el estadístico KMO (Kaiser-Meyer-Olkin), arrojarían resultados inaceptables o darían error computacional.
 
-Por tanto, para que el modelo sea matemáticamente ejecutable (es decir, $N > P$ y evitando la colinealidad perfecta), debemos realizar una reducción drástica y teórica a un subconjunto de variables. Así, basándonos en el Análisis de Componentes Principales realizado en la sección anterior, y en el número de grados de libertad necesarios para realizar el análisis facatorial:
-$$df = \frac{1}{2} [(P - M)^2 - (P + M)]$$
-donde $P$ es el número de variables analizadas y $M$ es el número de factores que deseamos extraer, tenemos que necesitamos como mínimo ($df = 1$), 5 variables ($P = 5$ y $M = 2$:):
-$$df = \frac{1}{2} [(5 - 2)^2 - (5 + 2)] = \frac{1}{2} [9 - 7] = 1$$
+Por tanto, para que el modelo sea matemáticamente ejecutable (es decir, $N > P$ y evitando la colinealidad perfecta), debemos realizar una reducción drástica y teórica a un subconjunto de variables. Así, basándonos en el Análisis de Componentes Principales realizado en la sección anterior, y en el número de grados de libertad necesarios para realizar el análisis facatorial: $$df = \frac{1}{2} [(P - M)^2 - (P + M)]$$ donde $P$ es el número de variables analizadas y $M$ es el número de factores que deseamos extraer, tenemos que necesitamos como mínimo ($df = 1$), 5 variables ($P = 5$ y $M = 2$:): $$df = \frac{1}{2} [(5 - 2)^2 - (5 + 2)] = \frac{1}{2} [9 - 7] = 1$$
 
 Si observamos la matriz de rotación, observamos que:
 
-- Para el componente 1 (eje x): Vimos que las variables con mayor carga positiva eran `Expensive` ($0.28$) e `International` ($0.26$) y una de las mayores cargas negativas era `EverydayHome` ($-0.24$). Al elegir estas variables, nos aseguramos de que el Factor 1 mida el constructo latente de "Estatus/Precio frente a Consumo Diario".
+-   Para el componente 1 (eje x): Vimos que las variables con mayor carga positiva eran `Expensive` ($0.28$) e `International` ($0.26$) y una de las mayores cargas negativas era `EverydayHome` ($-0.24$). Al elegir estas variables, nos aseguramos de que el Factor 1 mida el constructo latente de "Estatus/Precio frente a Consumo Diario".
 
-- Para el Componente 2 (eje y): La variable con mayor carga positiva fue `Youthful` ($0.36$) y la mayor carga negativa fue `Bitter` ($-0.32$). Al elegir este par, nos aseguramos de que el Factor 2 mida el constructo de "Identidad Juvenil/Suave frente a Intensidad/Amargor".
+-   Para el Componente 2 (eje y): La variable con mayor carga positiva fue `Youthful` ($0.36$) y la mayor carga negativa fue `Bitter` ($-0.32$). Al elegir este par, nos aseguramos de que el Factor 2 mida el constructo de "Identidad Juvenil/Suave frente a Intensidad/Amargor".
 
-Sabemos que estas variables son ortogonales por dos razones, una matemática y otra empírica: **i) **Por la construcción matemática del ACP (Ejes Ortogonales. El algoritmo del Análisis de Componentes Principales fuerza a que el Componente 1 (PC1) y el Componente 2 (PC2) sean estrictamente perpendiculares entre sí. Su correlación es exactamente $0$) y **ii)** Por la Matriz de Correlación (Evidencia Empírica. Si revisamos los datos numéricos de la matriz de correlación original para estas cuatro variables, veríamos que sus coeficientes de correlación de Pearson ($r$) son muy cercanos a cero cuando cruzamos variables de distintos ejes).
+Sabemos que estas variables son ortogonales por dos razones, una matemática y otra empírica: **i)** Por la construcción matemática del ACP (Ejes Ortogonales. El algoritmo del Análisis de Componentes Principales fuerza a que el Componente 1 (PC1) y el Componente 2 (PC2) sean estrictamente perpendiculares entre sí. Su correlación es exactamente $0$) y **ii)** Por la Matriz de Correlación (Evidencia Empírica. Si revisamos los datos numéricos de la matriz de correlación original para estas cuatro variables, veríamos que sus coeficientes de correlación de Pearson ($r$) son muy cercanos a cero cuando cruzamos variables de distintos ejes).
 
 Por tanto, *al seleccionar estas cuatro variables, "sintetizamos" los 22 atributos originales en los 5 conceptos que provocan la mayor diferenciación de las marcas en el mercado*.
 
@@ -330,15 +319,12 @@ library(psych)
 print(KMO(datos_reducidos)) 
 
 ```
+
 El estadístico KMO (Kaiser-Meyer-Olkin) evalúa si las correlaciones parciales entre las variables son lo suficientemente fuertes como para agruparse en factores. Sus valores van de 0 a 1.
 
 Vemos que tenemos un KMO Global de $0.65>0.50$ (mínimo aceptable). Por encima de $0.60$ se considera "mediocre pero válido" para continuar. Obtener un $0.65$ con solo $10$ marcas demuestra que las 5 variables que seleccionamos conforman una estructura coherente.
 
 Por otro lado, tenemos que el KMO por variable (MSA) arroja que International ($0.81$) y Family ($0.70$) tienen una adecuación muy buena. La única nota de atención es Youthful ($0.46$), que al estar por debajo de $0.50$ nos indica que, estrictamente hablando, tiene poca correlación compartida con el resto. No obstante, para los fines de este estudio, lo mantenemos en el modelo.
-
-
-
-
 
 ```{r}
 # Ejecutamos el Análisis Factorial (Extrayendo 2 factores)
@@ -356,11 +342,9 @@ Vemos que el Factor1 absorbe tres variables de forma casi perfecta (Expensive, I
 
 Por otro lado, el Factor2 absorbe las otras dos variables con gran fuerza (Youthful y Bitter). Este factor mide el perfil organoléptico y su target. Una puntuación alta aquí define a la cerveza casi exclusivamente como una bebida para jóvenes, suave y ligera (alejada del amargor). Por el contrario, una puntuación baja (hacia los valores negativos) define a una cerveza para paladares hechos al amargor y, por tanto, más adultos.
 
-Finalmente, la varainza explicada por el modelo viene dadda por SS loadings, Proportion Var y Cumulative Var. Como vemos en Proportion Var, el Factor 1 explica por sí solo el $53.1\%$ de la información total contenida en esas cinco variables, y el Factor 2 añade un $34.0\%$ de explicación. 
+Finalmente, la varainza explicada por el modelo viene dadda por SS loadings, Proportion Var y Cumulative Var. Como vemos en Proportion Var, el Factor 1 explica por sí solo el $53.1\%$ de la información total contenida en esas cinco variables, y el Factor 2 añade un $34.0\%$ de explicación.
 
-En general, según **Cumulative Var, el modelo factorial explica el $87.1\%$ de la varianza total**.
-
-
+En general, según **Cumulative Var, el modelo factorial explica el** $87.1\%$ de la varianza total.
 
 ## Clúster. K-Means. Aprendizaje automático no supervisado
 
@@ -368,19 +352,19 @@ Un **clúster (o conglomerado)** es un grupo de marcas (u observaciones) que com
 
 Si el Análisis de Componentes Principales (ACP) o el Análisis Factorial nos servían para agrupar variables (reducir atributos), el **análisis de clúster sirve para agrupar sujetos u objetos (en este caso, marcas de cerveza)**. En este caso, descubrir los clústers del mercado, permite:
 
-1. Identificar competidores directos: Las marcas que caen en el mismo clúster luchan exactamente por el mismo espacio mental del consumidor.
+1.  Identificar competidores directos: Las marcas que caen en el mismo clúster luchan exactamente por el mismo espacio mental del consumidor.
 
-2. Detectar nichos vacíos: Zonas del mapa donde no hay ningún clúster de marcas y donde se podría lanzar un nuevo producto.
+2.  Detectar nichos vacíos: Zonas del mapa donde no hay ningún clúster de marcas y donde se podría lanzar un nuevo producto.
 
 El método **K-Means** es un algoritmo de aprendizaje no supervisado de particionamiento. Su objetivo es dividir un conjunto de datos en $K$ grupos fijos (definidos previamente por el analista). Matemáticamente:
 
-1. **Asignación inicial**: El algoritmo selecciona de forma aleatoria $K$ puntos en el espacio de datos, los cuales actúan como los "centros" iniciales de los grupos (llamados centroides).
+1.  **Asignación inicial**: El algoritmo selecciona de forma aleatoria $K$ puntos en el espacio de datos, los cuales actúan como los "centros" iniciales de los grupos (llamados centroides).
 
-2. **Cálculo de Distancia**: Cada marca de cerveza se asigna al centroide más cercano utilizando una medida de distancia geométrica (normalmente la distancia euclídea).
+2.  **Cálculo de Distancia**: Cada marca de cerveza se asigna al centroide más cercano utilizando una medida de distancia geométrica (normalmente la distancia euclídea).
 
-3. **Recálculo de Centros**: Una vez asignadas todas las cervezas, el centroide se mueve al centro real (la media matemática) de todas las marcas que componen ese grupo.
+3.  **Recálculo de Centros**: Una vez asignadas todas las cervezas, el centroide se mueve al centro real (la media matemática) de todas las marcas que componen ese grupo.
 
-4. **Iteración**: Los pasos 2 y 3 se repiten una y otra vez de forma automática hasta que las marcas ya no cambian de grupo. El algoritmo se detiene cuando ha logrado minimizar la varianza interna de cada clúster.
+4.  **Iteración**: Los pasos 2 y 3 se repiten una y otra vez de forma automática hasta que las marcas ya no cambian de grupo. El algoritmo se detiene cuando ha logrado minimizar la varianza interna de cada clúster.
 
 Según hemos ido viendo en nuestro análisis, podemos separar las marcas de cerveza en tres grupos, tal y como vimos en el biplot:
 
@@ -389,6 +373,7 @@ par(mar = c(2, 2, 2, 1))
 biplot(modelo_pca, scale = 0, cex = 0.8, col = c("black", "red"),
        main = "Biplot PCA")
 ```
+
 Como vemos, tenemos tres grupos: **i)** Un grupo grande en el lado izquierdo (las cervezas tradicionales y familiares como Mahou, San Miguel, Cruzcampo); **ii)** Un par de marcas muy juntas en la parte superior derecha (Heineken y Coronita, enfocadas en jóvenes y noche); y **iii)** Un grupo en la parte inferior derecha (cervezas caras, internacionales o intensas como Bud y Voll-Damm).
 
 Por tanto, configuraremos el algoritmo para buscar $K = 3$ clústeres, coincidiendo con la estructura tripartita que descubrimos intuitivamente en los análisis anteriores.
@@ -409,8 +394,6 @@ datos_analisis$Cluster <- as.factor(segmentacion_km$cluster)
 datos_analisis[, "Cluster", drop = FALSE]
 
 ```
-
-
 
 ```{r}
 # GRAFICAMOS
@@ -437,41 +420,8 @@ ggplot(df_grafico, aes(x = PC1, y = PC2, color = Cluster, label = Marca)) +
   geom_hline(yintercept = 0, linetype = "dashed", alpha = 0.2)
 ```
 
-
 Obesrvamos así cómo se segmenta el mercado en tres zonas. La división más profunda y radical aísla a Heineken y Coronita del resto de competidores, posicionándolas en un nicho único centrado en la imagen social, la juventud y el ocio nocturno. Alejado de este enfoque lúdico, el resto del mercado se escinde en dos frentes opuestos: las marcas orientadas al consumo masivo diario y aquellas que apelan a un consumidor en busca de una experiencia de sabor más exigente.
 
-En el territorio cotidiano compiten ferozmente marcas nacionales como Mahou, San Miguel, Cruzcampo, Estrella y Amstel por dominar la rutina y el entorno familiar; aquí destaca la percepción casi idéntica del consumidor entre Mahou y San Miguel, frente al perfil ligeramente más amargo de Amstel. Por su parte, el bloque formado por Bud, Carlsberg y Voll-Damm se reserva para quienes priorizan el precio premium, la internacionalidad o un carácter organoléptico intenso. 
+En el territorio cotidiano compiten ferozmente marcas nacionales como Mahou, San Miguel, Cruzcampo, Estrella y Amstel por dominar la rutina y el entorno familiar; aquí destaca la percepción casi idéntica del consumidor entre Mahou y San Miguel, frente al perfil ligeramente más amargo de Amstel. Por su parte, el bloque formado por Bud, Carlsberg y Voll-Damm se reserva para quienes priorizan el precio premium, la internacionalidad o un carácter organoléptico intenso.
 
 *En definitiva, los datos confirman que el éxito en este sector no pasa por gustar a todo el mundo, sino por elegir y dominar una batalla específica: la socialización, la rutina o la exclusividad.*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

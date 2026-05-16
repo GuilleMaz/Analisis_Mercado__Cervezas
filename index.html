@@ -8,7 +8,7 @@
 
 <meta name="author" content="Guillermo">
 
-<title>Autoevaluación: Módulo 4</title>
+<title>Análisis de mercado de cervezas</title>
 <style>
 
 code{white-space: pre-wrap;}
@@ -2528,8 +2528,8 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Autoevaluación: Módulo 4</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver el código fuente</a></li></ul></div></div>
-<p class="subtitle lead">Series Temporales</p>
+<div class="quarto-title-block"><div><h1 class="title">Análisis de mercado de cervezas</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver el código fuente</a></li></ul></div></div>
+<p class="subtitle lead">Componentes Principales y Análisis Factorial</p>
 </div>
 
 
@@ -3491,7 +3491,7 @@ VollDamm   3.68 -3.57</code></pre>
 <p>En el caso de nuestros datos <strong>no es estadísticamente ni matemáticamente viable realizar un Análisis Factorial</strong> utilizando la matriz de percepciones completa (22 atributos sobre 10 marcas de cerveza), por dos razones principales:</p>
 <ol type="1">
 <li><p><strong>Problema de dimensionalidad (Matriz Singular)</strong>: En nuestro conjunto de datos, el número de variables o atributos (<span class="math inline">\(P = 22\)</span>) es superior al número de observaciones o marcas (<span class="math inline">\(N = 10\)</span>). Matemáticamente, esto genera una matriz de correlación “singular” o no definida positiva. Su determinante es cero o cercano a cero, lo que imposibilita la inversión de la matriz, un paso algebraico indispensable para los algoritmos de extracción de factores (como Máxima Verosimilitud).</p></li>
-<li><p><strong>Tamaño muestral crítico</strong>: La literatura estadística (ej. Hair et al., Comrey y Lee) establece reglas estrictas para el Análisis Factorial Exploratorio. Se exige un <strong>tamaño de muestra mínimo absoluto de 50 observaciones (idealmente <span class="math inline">\(&gt;100\)</span>)</strong> y una ratio de <strong>al menos 5 observaciones por cada variable analizada</strong>. Con 10 marcas, carecemos de grados de libertad suficientes; los factores extraídos serían fruto del azar (“ruido” estadístico) y no serían generalizables. Pruebas formales de adecuación muestral, como el estadístico KMO (Kaiser-Meyer-Olkin), arrojarían resultados inaceptables o darían error computacional.</p></li>
+<li><p><strong>Tamaño muestral crítico</strong>: La literatura estadística (ej. Hair et al., Comrey y Lee) establece reglas estrictas para el Análisis Factorial Exploratorio. Se exige un <strong>tamaño de muestra mínimo absoluto de 50 observaciones (idealmente</strong> <span class="math inline">\(&gt;100\)</span>) y una ratio de <strong>al menos 5 observaciones por cada variable analizada</strong>. Con 10 marcas, carecemos de grados de libertad suficientes; los factores extraídos serían fruto del azar (“ruido” estadístico) y no serían generalizables. Pruebas formales de adecuación muestral, como el estadístico KMO (Kaiser-Meyer-Olkin), arrojarían resultados inaceptables o darían error computacional.</p></li>
 </ol>
 <p>Por tanto, para que el modelo sea matemáticamente ejecutable (es decir, <span class="math inline">\(N &gt; P\)</span> y evitando la colinealidad perfecta), debemos realizar una reducción drástica y teórica a un subconjunto de variables. Así, basándonos en el Análisis de Componentes Principales realizado en la sección anterior, y en el número de grados de libertad necesarios para realizar el análisis facatorial: <span class="math display">\[df = \frac{1}{2} [(P - M)^2 - (P + M)]\]</span> donde <span class="math inline">\(P\)</span> es el número de variables analizadas y <span class="math inline">\(M\)</span> es el número de factores que deseamos extraer, tenemos que necesitamos como mínimo (<span class="math inline">\(df = 1\)</span>), 5 variables (<span class="math inline">\(P = 5\)</span> y <span class="math inline">\(M = 2\)</span>:): <span class="math display">\[df = \frac{1}{2} [(5 - 2)^2 - (5 + 2)] = \frac{1}{2} [9 - 7] = 1\]</span></p>
 <p>Si observamos la matriz de rotación, observamos que:</p>
@@ -3499,7 +3499,7 @@ VollDamm   3.68 -3.57</code></pre>
 <li><p>Para el componente 1 (eje x): Vimos que las variables con mayor carga positiva eran <code>Expensive</code> (<span class="math inline">\(0.28\)</span>) e <code>International</code> (<span class="math inline">\(0.26\)</span>) y una de las mayores cargas negativas era <code>EverydayHome</code> (<span class="math inline">\(-0.24\)</span>). Al elegir estas variables, nos aseguramos de que el Factor 1 mida el constructo latente de “Estatus/Precio frente a Consumo Diario”.</p></li>
 <li><p>Para el Componente 2 (eje y): La variable con mayor carga positiva fue <code>Youthful</code> (<span class="math inline">\(0.36\)</span>) y la mayor carga negativa fue <code>Bitter</code> (<span class="math inline">\(-0.32\)</span>). Al elegir este par, nos aseguramos de que el Factor 2 mida el constructo de “Identidad Juvenil/Suave frente a Intensidad/Amargor”.</p></li>
 </ul>
-<p>Sabemos que estas variables son ortogonales por dos razones, una matemática y otra empírica: <strong>i) </strong>Por la construcción matemática del ACP (Ejes Ortogonales. El algoritmo del Análisis de Componentes Principales fuerza a que el Componente 1 (PC1) y el Componente 2 (PC2) sean estrictamente perpendiculares entre sí. Su correlación es exactamente <span class="math inline">\(0\)</span>) y <strong>ii)</strong> Por la Matriz de Correlación (Evidencia Empírica. Si revisamos los datos numéricos de la matriz de correlación original para estas cuatro variables, veríamos que sus coeficientes de correlación de Pearson (<span class="math inline">\(r\)</span>) son muy cercanos a cero cuando cruzamos variables de distintos ejes).</p>
+<p>Sabemos que estas variables son ortogonales por dos razones, una matemática y otra empírica: <strong>i)</strong> Por la construcción matemática del ACP (Ejes Ortogonales. El algoritmo del Análisis de Componentes Principales fuerza a que el Componente 1 (PC1) y el Componente 2 (PC2) sean estrictamente perpendiculares entre sí. Su correlación es exactamente <span class="math inline">\(0\)</span>) y <strong>ii)</strong> Por la Matriz de Correlación (Evidencia Empírica. Si revisamos los datos numéricos de la matriz de correlación original para estas cuatro variables, veríamos que sus coeficientes de correlación de Pearson (<span class="math inline">\(r\)</span>) son muy cercanos a cero cuando cruzamos variables de distintos ejes).</p>
 <p>Por tanto, <em>al seleccionar estas cuatro variables, “sintetizamos” los 22 atributos originales en los 5 conceptos que provocan la mayor diferenciación de las marcas en el mercado</em>.</p>
 <p>Aplicamos el código:</p>
 <div class="cell">
@@ -3557,7 +3557,7 @@ Cumulative Var   0.531   0.871</code></pre>
 <p>Vemos que el Factor1 absorbe tres variables de forma casi perfecta (Expensive, International y Family). Este factor mide el posicionamiento corporativo de la marca. Si una cerveza puntúa alto en este factor, el consumidor la percibe inmediatamente como una cerveza cara, internacional y exclusiva. Si puntúa bajo (negativo), es dominada por el concepto de “Familia”, siendo percibida como la marca nacional de toda la vida, cercana y tradicional.</p>
 <p>Por otro lado, el Factor2 absorbe las otras dos variables con gran fuerza (Youthful y Bitter). Este factor mide el perfil organoléptico y su target. Una puntuación alta aquí define a la cerveza casi exclusivamente como una bebida para jóvenes, suave y ligera (alejada del amargor). Por el contrario, una puntuación baja (hacia los valores negativos) define a una cerveza para paladares hechos al amargor y, por tanto, más adultos.</p>
 <p>Finalmente, la varainza explicada por el modelo viene dadda por SS loadings, Proportion Var y Cumulative Var. Como vemos en Proportion Var, el Factor 1 explica por sí solo el <span class="math inline">\(53.1\%\)</span> de la información total contenida en esas cinco variables, y el Factor 2 añade un <span class="math inline">\(34.0\%\)</span> de explicación.</p>
-<p>En general, según <strong>Cumulative Var, el modelo factorial explica el <span class="math inline">\(87.1\%\)</span> de la varianza total</strong>.</p>
+<p>En general, según <strong>Cumulative Var, el modelo factorial explica el</strong> <span class="math inline">\(87.1\%\)</span> de la varianza total.</p>
 </section>
 <section id="clúster.-k-means.-aprendizaje-automático-no-supervisado" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="clúster.-k-means.-aprendizaje-automático-no-supervisado"><span class="header-section-number">4</span> Clúster. K-Means. Aprendizaje automático no supervisado</h2>
@@ -4163,8 +4163,8 @@ Adjuntando el paquete: &#39;ggplot2&#39;</code></pre>
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb43-1"><a href="#cb43-1"></a><span class="co">---</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a><span class="an">title:</span><span class="co"> &quot;Autoevaluación: Módulo 4&quot;</span></span>
-<span id="cb43-3"><a href="#cb43-3"></a><span class="an">subtitle:</span><span class="co"> &quot;Series Temporales&quot;</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a><span class="an">title:</span><span class="co"> &quot;Análisis de mercado de cervezas&quot;</span></span>
+<span id="cb43-3"><a href="#cb43-3"></a><span class="an">subtitle:</span><span class="co"> &quot;Componentes Principales y Análisis Factorial&quot;</span></span>
 <span id="cb43-4"><a href="#cb43-4"></a><span class="an">author:</span><span class="co"> &quot;Guillermo&quot;</span></span>
 <span id="cb43-5"><a href="#cb43-5"></a><span class="an">date:</span><span class="co"> last-modified</span></span>
 <span id="cb43-6"><a href="#cb43-6"></a><span class="an">date-format:</span><span class="co"> &quot;DD [de] MMMM, YYYY&quot;</span></span>
@@ -4231,413 +4231,364 @@ Adjuntando el paquete: &#39;ggplot2&#39;</code></pre>
 <span id="cb43-77"><a href="#cb43-77"></a>datos_analisis[] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(datos_analisis, <span class="cf">function</span>(x) <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(x)))</span>
 <span id="cb43-78"><a href="#cb43-78"></a><span class="in">```</span></span>
 <span id="cb43-79"><a href="#cb43-79"></a></span>
-<span id="cb43-80"><a href="#cb43-80"></a></span>
-<span id="cb43-81"><a href="#cb43-81"></a>Sumario de estadísticas:</span>
-<span id="cb43-82"><a href="#cb43-82"></a></span>
-<span id="cb43-85"><a href="#cb43-85"></a><span class="in">```{r}</span></span>
-<span id="cb43-86"><a href="#cb43-86"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb43-87"><a href="#cb43-87"></a><span class="fu">skim</span>(datos_analisis)</span>
-<span id="cb43-88"><a href="#cb43-88"></a><span class="in">```</span></span>
-<span id="cb43-89"><a href="#cb43-89"></a></span>
-<span id="cb43-90"><a href="#cb43-90"></a>Por tanto, vemos que los datos están completos.</span>
-<span id="cb43-91"><a href="#cb43-91"></a></span>
-<span id="cb43-92"><a href="#cb43-92"></a>Por útlimo, analizamos las correlaciones que se dan entre las distintas puntuaciones</span>
-<span id="cb43-93"><a href="#cb43-93"></a></span>
-<span id="cb43-96"><a href="#cb43-96"></a><span class="in">```{r}</span></span>
-<span id="cb43-97"><a href="#cb43-97"></a><span class="fu">library</span>(corrplot)</span>
-<span id="cb43-98"><a href="#cb43-98"></a>matriz_correlacion <span class="ot">&lt;-</span> <span class="fu">cor</span>(datos_analisis, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span>
-<span id="cb43-99"><a href="#cb43-99"></a></span>
-<span id="cb43-100"><a href="#cb43-100"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">--- MATRIZ DE CORRELACIONES ---</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb43-101"><a href="#cb43-101"></a><span class="fu">print</span>(<span class="fu">round</span>(matriz_correlacion, <span class="dv">2</span>))</span>
-<span id="cb43-102"><a href="#cb43-102"></a></span>
-<span id="cb43-103"><a href="#cb43-103"></a><span class="co"># Gráfico de correlación</span></span>
-<span id="cb43-104"><a href="#cb43-104"></a><span class="fu">corrplot</span>(matriz_correlacion, <span class="at">method =</span> <span class="st">&quot;color&quot;</span>, <span class="at">type =</span> <span class="st">&quot;upper&quot;</span>, </span>
-<span id="cb43-105"><a href="#cb43-105"></a>         <span class="at">tl.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">tl.srt =</span> <span class="dv">45</span>, <span class="at">number.cex =</span> <span class="fl">0.6</span>,</span>
-<span id="cb43-106"><a href="#cb43-106"></a>         <span class="at">title =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">Correlación de Percepciones (Excluyendo Precio y Cuota)&quot;</span>,</span>
-<span id="cb43-107"><a href="#cb43-107"></a>         <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
-<span id="cb43-108"><a href="#cb43-108"></a></span>
-<span id="cb43-109"><a href="#cb43-109"></a><span class="co"># Extraer correlaciones mayores a 0.8</span></span>
-<span id="cb43-110"><a href="#cb43-110"></a>matriz_triangular <span class="ot">&lt;-</span> matriz_correlacion</span>
-<span id="cb43-111"><a href="#cb43-111"></a>matriz_triangular[<span class="fu">lower.tri</span>(matriz_triangular, <span class="at">diag =</span> <span class="cn">TRUE</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb43-112"><a href="#cb43-112"></a>pares_correlacion <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">as.table</span>(matriz_triangular))</span>
-<span id="cb43-113"><a href="#cb43-113"></a>pares_correlacion <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(pares_correlacion)</span>
-<span id="cb43-114"><a href="#cb43-114"></a><span class="fu">names</span>(pares_correlacion) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Variable_1&quot;</span>, <span class="st">&quot;Variable_2&quot;</span>, <span class="st">&quot;Correlacion&quot;</span>)</span>
-<span id="cb43-115"><a href="#cb43-115"></a></span>
-<span id="cb43-116"><a href="#cb43-116"></a>correlaciones_altas <span class="ot">&lt;-</span> pares_correlacion[<span class="fu">abs</span>(pares_correlacion<span class="sc">$</span>Correlacion) <span class="sc">&gt;=</span> <span class="fl">0.8</span>, ]</span>
-<span id="cb43-117"><a href="#cb43-117"></a>correlaciones_altas <span class="ot">&lt;-</span> correlaciones_altas[<span class="fu">order</span>(<span class="sc">-</span><span class="fu">abs</span>(correlaciones_altas<span class="sc">$</span>Correlacion)), ]</span>
-<span id="cb43-118"><a href="#cb43-118"></a></span>
-<span id="cb43-119"><a href="#cb43-119"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">--- VARIABLES CON CORRELACIÓN FUERTE (|r| &gt;= 0.8) ---</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb43-120"><a href="#cb43-120"></a><span class="cf">if</span> (<span class="fu">nrow</span>(correlaciones_altas) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb43-121"><a href="#cb43-121"></a>  <span class="fu">print</span>(correlaciones_altas, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb43-122"><a href="#cb43-122"></a>} <span class="cf">else</span> {</span>
-<span id="cb43-123"><a href="#cb43-123"></a>  <span class="fu">cat</span>(<span class="st">&quot;No se encontraron pares de variables con una correlación &gt;= 0.8</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb43-124"><a href="#cb43-124"></a>}</span>
-<span id="cb43-125"><a href="#cb43-125"></a><span class="in">```</span></span>
-<span id="cb43-126"><a href="#cb43-126"></a></span>
+<span id="cb43-80"><a href="#cb43-80"></a>Sumario de estadísticas:</span>
+<span id="cb43-81"><a href="#cb43-81"></a></span>
+<span id="cb43-84"><a href="#cb43-84"></a><span class="in">```{r}</span></span>
+<span id="cb43-85"><a href="#cb43-85"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb43-86"><a href="#cb43-86"></a><span class="fu">skim</span>(datos_analisis)</span>
+<span id="cb43-87"><a href="#cb43-87"></a><span class="in">```</span></span>
+<span id="cb43-88"><a href="#cb43-88"></a></span>
+<span id="cb43-89"><a href="#cb43-89"></a>Por tanto, vemos que los datos están completos.</span>
+<span id="cb43-90"><a href="#cb43-90"></a></span>
+<span id="cb43-91"><a href="#cb43-91"></a>Por útlimo, analizamos las correlaciones que se dan entre las distintas puntuaciones</span>
+<span id="cb43-92"><a href="#cb43-92"></a></span>
+<span id="cb43-95"><a href="#cb43-95"></a><span class="in">```{r}</span></span>
+<span id="cb43-96"><a href="#cb43-96"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb43-97"><a href="#cb43-97"></a>matriz_correlacion <span class="ot">&lt;-</span> <span class="fu">cor</span>(datos_analisis, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span>
+<span id="cb43-98"><a href="#cb43-98"></a></span>
+<span id="cb43-99"><a href="#cb43-99"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">--- MATRIZ DE CORRELACIONES ---</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb43-100"><a href="#cb43-100"></a><span class="fu">print</span>(<span class="fu">round</span>(matriz_correlacion, <span class="dv">2</span>))</span>
+<span id="cb43-101"><a href="#cb43-101"></a></span>
+<span id="cb43-102"><a href="#cb43-102"></a><span class="co"># Gráfico de correlación</span></span>
+<span id="cb43-103"><a href="#cb43-103"></a><span class="fu">corrplot</span>(matriz_correlacion, <span class="at">method =</span> <span class="st">&quot;color&quot;</span>, <span class="at">type =</span> <span class="st">&quot;upper&quot;</span>, </span>
+<span id="cb43-104"><a href="#cb43-104"></a>         <span class="at">tl.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">tl.srt =</span> <span class="dv">45</span>, <span class="at">number.cex =</span> <span class="fl">0.6</span>,</span>
+<span id="cb43-105"><a href="#cb43-105"></a>         <span class="at">title =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">Correlación de Percepciones (Excluyendo Precio y Cuota)&quot;</span>,</span>
+<span id="cb43-106"><a href="#cb43-106"></a>         <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
+<span id="cb43-107"><a href="#cb43-107"></a></span>
+<span id="cb43-108"><a href="#cb43-108"></a><span class="co"># Extraer correlaciones mayores a 0.8</span></span>
+<span id="cb43-109"><a href="#cb43-109"></a>matriz_triangular <span class="ot">&lt;-</span> matriz_correlacion</span>
+<span id="cb43-110"><a href="#cb43-110"></a>matriz_triangular[<span class="fu">lower.tri</span>(matriz_triangular, <span class="at">diag =</span> <span class="cn">TRUE</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb43-111"><a href="#cb43-111"></a>pares_correlacion <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">as.table</span>(matriz_triangular))</span>
+<span id="cb43-112"><a href="#cb43-112"></a>pares_correlacion <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(pares_correlacion)</span>
+<span id="cb43-113"><a href="#cb43-113"></a><span class="fu">names</span>(pares_correlacion) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Variable_1&quot;</span>, <span class="st">&quot;Variable_2&quot;</span>, <span class="st">&quot;Correlacion&quot;</span>)</span>
+<span id="cb43-114"><a href="#cb43-114"></a></span>
+<span id="cb43-115"><a href="#cb43-115"></a>correlaciones_altas <span class="ot">&lt;-</span> pares_correlacion[<span class="fu">abs</span>(pares_correlacion<span class="sc">$</span>Correlacion) <span class="sc">&gt;=</span> <span class="fl">0.8</span>, ]</span>
+<span id="cb43-116"><a href="#cb43-116"></a>correlaciones_altas <span class="ot">&lt;-</span> correlaciones_altas[<span class="fu">order</span>(<span class="sc">-</span><span class="fu">abs</span>(correlaciones_altas<span class="sc">$</span>Correlacion)), ]</span>
+<span id="cb43-117"><a href="#cb43-117"></a></span>
+<span id="cb43-118"><a href="#cb43-118"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">--- VARIABLES CON CORRELACIÓN FUERTE (|r| &gt;= 0.8) ---</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb43-119"><a href="#cb43-119"></a><span class="cf">if</span> (<span class="fu">nrow</span>(correlaciones_altas) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb43-120"><a href="#cb43-120"></a>  <span class="fu">print</span>(correlaciones_altas, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb43-121"><a href="#cb43-121"></a>} <span class="cf">else</span> {</span>
+<span id="cb43-122"><a href="#cb43-122"></a>  <span class="fu">cat</span>(<span class="st">&quot;No se encontraron pares de variables con una correlación &gt;= 0.8</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb43-123"><a href="#cb43-123"></a>}</span>
+<span id="cb43-124"><a href="#cb43-124"></a><span class="in">```</span></span>
+<span id="cb43-125"><a href="#cb43-125"></a></span>
+<span id="cb43-126"><a href="#cb43-126"></a>Vemos que hay muchísimas variables muy altamente correlacionadas.</span>
 <span id="cb43-127"><a href="#cb43-127"></a></span>
-<span id="cb43-128"><a href="#cb43-128"></a>Vemos que hay muchísimas variables muy altamente correlacionadas.</span>
+<span id="cb43-128"><a href="#cb43-128"></a><span class="fu">## Componentes Principales</span></span>
 <span id="cb43-129"><a href="#cb43-129"></a></span>
-<span id="cb43-130"><a href="#cb43-130"></a><span class="fu">## Componentes Principales</span></span>
+<span id="cb43-130"><a href="#cb43-130"></a>El **Análisis de Componentes Principales** (ACP) es una técnica estadística multivariante enfocada en la reducción de dimensionalidad.</span>
 <span id="cb43-131"><a href="#cb43-131"></a></span>
-<span id="cb43-132"><a href="#cb43-132"></a>El **Análisis de Componentes Principales** (ACP) es una técnica estadística multivariante enfocada en la reducción de dimensionalidad.</span>
+<span id="cb43-132"><a href="#cb43-132"></a>Su objetivo principal es transformar un conjunto de datos que contiene múltiples variables (frecuentemente correlacionadas entre sí) en un nuevo conjunto reducido de variables que no están correlacionadas, manteniendo la mayor cantidad posible de información o variabilidad del conjunto original.</span>
 <span id="cb43-133"><a href="#cb43-133"></a></span>
-<span id="cb43-134"><a href="#cb43-134"></a>Su objetivo principal es transformar un conjunto de datos que contiene múltiples variables (frecuentemente correlacionadas entre sí) en un nuevo conjunto reducido de variables que no están correlacionadas, manteniendo la mayor cantidad posible de información o variabilidad del conjunto original.</span>
+<span id="cb43-134"><a href="#cb43-134"></a>A nivel conceptual y matemático, el ACP se rige por los siguientes principios:</span>
 <span id="cb43-135"><a href="#cb43-135"></a></span>
-<span id="cb43-136"><a href="#cb43-136"></a>A nivel conceptual y matemático, el ACP se rige por los siguientes principios:</span>
+<span id="cb43-136"><a href="#cb43-136"></a><span class="ss">-   </span>**Componentes Principales**: Las nuevas variables creadas se denominan componentes principales. Estas son combinaciones lineales de las variables originales.</span>
 <span id="cb43-137"><a href="#cb43-137"></a></span>
-<span id="cb43-138"><a href="#cb43-138"></a><span class="ss">- </span>**Componentes Principales**: Las nuevas variables creadas se denominan componentes principales. Estas son combinaciones lineales de las variables originales.</span>
+<span id="cb43-138"><a href="#cb43-138"></a><span class="ss">-   </span>**Maximización de la varianza**: Los componentes se calculan de manera secuencial. El primer componente principal se traza en la dirección que captura la mayor proporción de la varianza (dispersión) de los datos. El segundo componente captura la máxima varianza restante, con la condición estricta de ser ortogonal (perpendicular y no correlacionado) al primero. Este proceso se repite hasta igualar el número de variables originales.</span>
 <span id="cb43-139"><a href="#cb43-139"></a></span>
-<span id="cb43-140"><a href="#cb43-140"></a><span class="ss">- </span>**Maximización de la varianza**: Los componentes se calculan de manera secuencial. El primer componente principal se traza en la dirección que captura la mayor proporción de la varianza (dispersión) de los datos. El segundo componente captura la máxima varianza restante, con la condición estricta de ser ortogonal (perpendicular y no correlacionado) al primero. Este proceso se repite hasta igualar el número de variables originales.</span>
+<span id="cb43-140"><a href="#cb43-140"></a><span class="ss">-   </span>**Reducción**: Dado que los primeros componentes concentran la inmensa mayoría de la información útil, los analistas pueden descartar los últimos componentes (que suelen representar &quot;ruido&quot; estadístico), reduciendo así drásticamente la complejidad del modelo.</span>
 <span id="cb43-141"><a href="#cb43-141"></a></span>
-<span id="cb43-142"><a href="#cb43-142"></a><span class="ss">- </span>**Reducción**: Dado que los primeros componentes concentran la inmensa mayoría de la información útil, los analistas pueden descartar los últimos componentes (que suelen representar &quot;ruido&quot; estadístico), reduciendo así drásticamente la complejidad del modelo.</span>
+<span id="cb43-142"><a href="#cb43-142"></a>En la práctica, el análisis de componentes principales se utiliza ampliamente para simplificar el procesamiento de grandes volúmenes de datos, facilitar la visualización en dos o tres dimensiones, mejorar la eficiencia computacional y evitar problemas de multicolinealidad en modelos de aprendizaje automático predictivos.</span>
 <span id="cb43-143"><a href="#cb43-143"></a></span>
-<span id="cb43-144"><a href="#cb43-144"></a>En la práctica, el análisis de componentes principales se utiliza ampliamente para simplificar el procesamiento de grandes volúmenes de datos, facilitar la visualización en dos o tres dimensiones, mejorar la eficiencia computacional y evitar problemas de multicolinealidad en modelos de aprendizaje automático predictivos.</span>
+<span id="cb43-144"><a href="#cb43-144"></a>Sea $R$ la matriz de correlación, resolvemos la ecuación característica, donde $\lambda$ son los valores propios (varianza) y que, por tanto, ccalculando $\sqrt{\lambda}$ obtenemos la desviación típica: $$\det(R - \lambda I) = 0$$ *La suma de todos los autovalores es igual al número de variables que tenemos*</span>
 <span id="cb43-145"><a href="#cb43-145"></a></span>
-<span id="cb43-146"><a href="#cb43-146"></a>Sea $R$ la matriz de correlación, resolvemos la ecuación característica, donde $\lambda$ son los valores propios (varianza) y que, por tanto, ccalculando $\sqrt{\lambda}$ obtenemos la desviación típica: </span>
-<span id="cb43-147"><a href="#cb43-147"></a>$$\det(R - \lambda I) = 0$$</span>
-<span id="cb43-148"><a href="#cb43-148"></a>*La suma de todos los autovalores es igual al número de variables que tenemos*</span>
-<span id="cb43-149"><a href="#cb43-149"></a></span>
-<span id="cb43-152"><a href="#cb43-152"></a><span class="in">```{r}</span></span>
-<span id="cb43-153"><a href="#cb43-153"></a><span class="co"># scale. = TRUE para estandarizar las variables</span></span>
-<span id="cb43-154"><a href="#cb43-154"></a>modelo_pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(datos_analisis, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale. =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb43-155"><a href="#cb43-155"></a><span class="fu">summary</span>(modelo_pca)</span>
-<span id="cb43-156"><a href="#cb43-156"></a><span class="in">```</span></span>
-<span id="cb43-157"><a href="#cb43-157"></a>Resultados:</span>
-<span id="cb43-158"><a href="#cb43-158"></a></span>
-<span id="cb43-159"><a href="#cb43-159"></a><span class="ss">- </span>**Standard deviation**. Un valor **mayor que 1** nos indica que ese componente explica más información que una sola de las variables originales por separado (suponiendo que los datos están estandarizados). En este caso, tenemos que los tres primeros componentes ($PC1$, $PC2$ y $PC3$) son muy potentes porque tienen desviaciones significativamente altas ($3.25$, $2.53$ y $1.80$).</span>
-<span id="cb43-160"><a href="#cb43-160"></a></span>
-<span id="cb43-161"><a href="#cb43-161"></a><span class="ss">- </span>**Proportion of Variance**. Es el dato más importante del análisis. Indica qué porcentaje del &quot;ruido&quot; o información total del archivo original está contenido en ese componente específico.</span>
-<span id="cb43-162"><a href="#cb43-162"></a></span>
-<span id="cb43-163"><a href="#cb43-163"></a><span class="ss">  - </span>PC1 (0.4808): El primer componente por sí solo captura el $48.08\%$ de toda la variabilidad de las percepciones de las cervezas. Casi la mitad de las diferencias entre marcas se explican por un solo eje.</span>
-<span id="cb43-164"><a href="#cb43-164"></a>  </span>
-<span id="cb43-165"><a href="#cb43-165"></a><span class="ss">  - </span>PC2 (0.2919): El segundo componente captura el $29.19\%$. </span>
-<span id="cb43-166"><a href="#cb43-166"></a>  </span>
-<span id="cb43-167"><a href="#cb43-167"></a><span class="ss">  - </span>A partir del $PC4$, la proporción cae drásticamente ($2.6\%$), lo que significa que esos componentes ya solo capturan detalles irrelevantes o errores de medición.</span>
-<span id="cb43-168"><a href="#cb43-168"></a>  </span>
-<span id="cb43-169"><a href="#cb43-169"></a><span class="ss">- </span>**Cumulative Proportion**. Es la suma consecutiva de la fila anterior. Ayuda a decidir con cuántos componentes debemos quedarnos para el estudio:</span>
-<span id="cb43-170"><a href="#cb43-170"></a></span>
-<span id="cb43-171"><a href="#cb43-171"></a><span class="ss">  - </span>PC1 + PC2 = 0.7728: Esto significa que si solo usamos los dos primeros componentes (los que aparecen en el Biplot), estaremos visualizando el $77.28\%$ de toda la información del estudio. En ciencias sociales y marketing, superar el $70\%$ es un resultado excelente.</span>
-<span id="cb43-172"><a href="#cb43-172"></a>  </span>
-<span id="cb43-173"><a href="#cb43-173"></a><span class="ss">  - </span>PC1 + PC2 + PC3 = 0.9216: Si icluimos un tercer eje, llegaríamos al $92.16\%$ de la información.</span>
-<span id="cb43-174"><a href="#cb43-174"></a></span>
-<span id="cb43-175"><a href="#cb43-175"></a></span>
-<span id="cb43-176"><a href="#cb43-176"></a>Ahora, mostramos los pesos de las variables en los componentes 1 y 2 así como las puntuaciones de las marcas</span>
-<span id="cb43-177"><a href="#cb43-177"></a></span>
-<span id="cb43-178"><a href="#cb43-178"></a></span>
-<span id="cb43-181"><a href="#cb43-181"></a><span class="in">```{r}</span></span>
-<span id="cb43-182"><a href="#cb43-182"></a><span class="co"># Pesos</span></span>
-<span id="cb43-183"><a href="#cb43-183"></a><span class="fu">round</span>(modelo_pca<span class="sc">$</span>rotation[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="dv">2</span>)</span>
-<span id="cb43-184"><a href="#cb43-184"></a><span class="in">```</span></span>
-<span id="cb43-185"><a href="#cb43-185"></a>Para interpretar los pesos, debemos de fijarnos en los valores más grandes, en módulo:</span>
+<span id="cb43-148"><a href="#cb43-148"></a><span class="in">```{r}</span></span>
+<span id="cb43-149"><a href="#cb43-149"></a><span class="co"># scale. = TRUE para estandarizar las variables</span></span>
+<span id="cb43-150"><a href="#cb43-150"></a>modelo_pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(datos_analisis, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale. =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb43-151"><a href="#cb43-151"></a><span class="fu">summary</span>(modelo_pca)</span>
+<span id="cb43-152"><a href="#cb43-152"></a><span class="in">```</span></span>
+<span id="cb43-153"><a href="#cb43-153"></a></span>
+<span id="cb43-154"><a href="#cb43-154"></a>Resultados:</span>
+<span id="cb43-155"><a href="#cb43-155"></a></span>
+<span id="cb43-156"><a href="#cb43-156"></a><span class="ss">-   </span>**Standard deviation**. Un valor **mayor que 1** nos indica que ese componente explica más información que una sola de las variables originales por separado (suponiendo que los datos están estandarizados). En este caso, tenemos que los tres primeros componentes ($PC1$, $PC2$ y $PC3$) son muy potentes porque tienen desviaciones significativamente altas ($3.25$, $2.53$ y $1.80$).</span>
+<span id="cb43-157"><a href="#cb43-157"></a></span>
+<span id="cb43-158"><a href="#cb43-158"></a><span class="ss">-   </span>**Proportion of Variance**. Es el dato más importante del análisis. Indica qué porcentaje del &quot;ruido&quot; o información total del archivo original está contenido en ese componente específico.</span>
+<span id="cb43-159"><a href="#cb43-159"></a></span>
+<span id="cb43-160"><a href="#cb43-160"></a><span class="ss">    -   </span>PC1 (0.4808): El primer componente por sí solo captura el $48.08\%$ de toda la variabilidad de las percepciones de las cervezas. Casi la mitad de las diferencias entre marcas se explican por un solo eje.</span>
+<span id="cb43-161"><a href="#cb43-161"></a></span>
+<span id="cb43-162"><a href="#cb43-162"></a><span class="ss">    -   </span>PC2 (0.2919): El segundo componente captura el $29.19\%$.</span>
+<span id="cb43-163"><a href="#cb43-163"></a></span>
+<span id="cb43-164"><a href="#cb43-164"></a><span class="ss">    -   </span>A partir del $PC4$, la proporción cae drásticamente ($2.6\%$), lo que significa que esos componentes ya solo capturan detalles irrelevantes o errores de medición.</span>
+<span id="cb43-165"><a href="#cb43-165"></a></span>
+<span id="cb43-166"><a href="#cb43-166"></a><span class="ss">-   </span>**Cumulative Proportion**. Es la suma consecutiva de la fila anterior. Ayuda a decidir con cuántos componentes debemos quedarnos para el estudio:</span>
+<span id="cb43-167"><a href="#cb43-167"></a></span>
+<span id="cb43-168"><a href="#cb43-168"></a><span class="ss">    -   </span>PC1 + PC2 = 0.7728: Esto significa que si solo usamos los dos primeros componentes (los que aparecen en el Biplot), estaremos visualizando el $77.28\%$ de toda la información del estudio. En ciencias sociales y marketing, superar el $70\%$ es un resultado excelente.</span>
+<span id="cb43-169"><a href="#cb43-169"></a></span>
+<span id="cb43-170"><a href="#cb43-170"></a><span class="ss">    -   </span>PC1 + PC2 + PC3 = 0.9216: Si icluimos un tercer eje, llegaríamos al $92.16\%$ de la información.</span>
+<span id="cb43-171"><a href="#cb43-171"></a></span>
+<span id="cb43-172"><a href="#cb43-172"></a>Ahora, mostramos los pesos de las variables en los componentes 1 y 2 así como las puntuaciones de las marcas</span>
+<span id="cb43-173"><a href="#cb43-173"></a></span>
+<span id="cb43-176"><a href="#cb43-176"></a><span class="in">```{r}</span></span>
+<span id="cb43-177"><a href="#cb43-177"></a><span class="co"># Pesos</span></span>
+<span id="cb43-178"><a href="#cb43-178"></a><span class="fu">round</span>(modelo_pca<span class="sc">$</span>rotation[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="dv">2</span>)</span>
+<span id="cb43-179"><a href="#cb43-179"></a><span class="in">```</span></span>
+<span id="cb43-180"><a href="#cb43-180"></a></span>
+<span id="cb43-181"><a href="#cb43-181"></a>Para interpretar los pesos, debemos de fijarnos en los valores más grandes, en módulo:</span>
+<span id="cb43-182"><a href="#cb43-182"></a></span>
+<span id="cb43-183"><a href="#cb43-183"></a><span class="ss">-   </span>**Componente Principal 1 (PC1)**: El eje del &quot;Estatus / Exclusividad vs. Cotidianidad&quot;. Si observamos la columna PC1, vemos una clara oposición entre dos tipos de consumo:</span>
+<span id="cb43-184"><a href="#cb43-184"></a></span>
+<span id="cb43-185"><a href="#cb43-185"></a><span class="ss">    -   </span>Valores muy positivos (El lado del Estatus/Lujo):</span>
 <span id="cb43-186"><a href="#cb43-186"></a></span>
-<span id="cb43-187"><a href="#cb43-187"></a><span class="ss">- </span>**Componente Principal 1 (PC1)**: El eje del &quot;Estatus / Exclusividad vs. Cotidianidad&quot;. Si observamos la columna PC1, vemos una clara oposición entre dos tipos de consumo:</span>
+<span id="cb43-187"><a href="#cb43-187"></a><span class="ss">        -   </span>Expensive (0.28)</span>
 <span id="cb43-188"><a href="#cb43-188"></a></span>
-<span id="cb43-189"><a href="#cb43-189"></a><span class="ss">  - </span>Valores muy positivos (El lado del Estatus/Lujo): </span>
-<span id="cb43-190"><a href="#cb43-190"></a>  </span>
-<span id="cb43-191"><a href="#cb43-191"></a><span class="ss">    - </span>Expensive (0.28)</span>
-<span id="cb43-192"><a href="#cb43-192"></a>    </span>
-<span id="cb43-193"><a href="#cb43-193"></a><span class="ss">    - </span>International (0.26)</span>
+<span id="cb43-189"><a href="#cb43-189"></a><span class="ss">        -   </span>International (0.26)</span>
+<span id="cb43-190"><a href="#cb43-190"></a></span>
+<span id="cb43-191"><a href="#cb43-191"></a><span class="ss">        -   </span>Sophisticated (0.26)</span>
+<span id="cb43-192"><a href="#cb43-192"></a></span>
+<span id="cb43-193"><a href="#cb43-193"></a><span class="ss">        -   </span>Premium (0.22)</span>
 <span id="cb43-194"><a href="#cb43-194"></a></span>
-<span id="cb43-195"><a href="#cb43-195"></a><span class="ss">    - </span>Sophisticated (0.26)</span>
+<span id="cb43-195"><a href="#cb43-195"></a><span class="ss">        -   </span>Night club (0.22)</span>
 <span id="cb43-196"><a href="#cb43-196"></a></span>
-<span id="cb43-197"><a href="#cb43-197"></a><span class="ss">    - </span>Premium (0.22)</span>
+<span id="cb43-197"><a href="#cb43-197"></a><span class="ss">        -   </span>To be seen (0.21)</span>
 <span id="cb43-198"><a href="#cb43-198"></a></span>
-<span id="cb43-199"><a href="#cb43-199"></a><span class="ss">    - </span>Night club (0.22)</span>
+<span id="cb43-199"><a href="#cb43-199"></a><span class="ss">        -   </span>*Significado*: Las marcas que puntúen en positivo en este eje son percibidas como cervezas internacionales, caras, sofisticadas y orientadas al ocio nocturno y el &quot;postureo&quot; (para ser visto con ellas).</span>
 <span id="cb43-200"><a href="#cb43-200"></a></span>
-<span id="cb43-201"><a href="#cb43-201"></a><span class="ss">    - </span>To be seen (0.21)</span>
-<span id="cb43-202"><a href="#cb43-202"></a>    </span>
-<span id="cb43-203"><a href="#cb43-203"></a><span class="ss">    - </span>*Significado*: Las marcas que puntúen en positivo en este eje son percibidas como cervezas internacionales, caras, sofisticadas y orientadas al ocio nocturno y el &quot;postureo&quot; (para ser visto con ellas).</span>
-<span id="cb43-204"><a href="#cb43-204"></a>    </span>
-<span id="cb43-205"><a href="#cb43-205"></a><span class="ss">  - </span>Valores muy negativos (El lado de lo Cotidiano/Familiar):</span>
-<span id="cb43-206"><a href="#cb43-206"></a>  </span>
-<span id="cb43-207"><a href="#cb43-207"></a><span class="ss">    - </span>Family (-0.30)</span>
+<span id="cb43-201"><a href="#cb43-201"></a><span class="ss">    -   </span>Valores muy negativos (El lado de lo Cotidiano/Familiar):</span>
+<span id="cb43-202"><a href="#cb43-202"></a></span>
+<span id="cb43-203"><a href="#cb43-203"></a><span class="ss">        -   </span>Family (-0.30)</span>
+<span id="cb43-204"><a href="#cb43-204"></a></span>
+<span id="cb43-205"><a href="#cb43-205"></a><span class="ss">        -   </span>With food (-0.28)</span>
+<span id="cb43-206"><a href="#cb43-206"></a></span>
+<span id="cb43-207"><a href="#cb43-207"></a><span class="ss">        -   </span>Availability (Store) (-0.27)</span>
 <span id="cb43-208"><a href="#cb43-208"></a></span>
-<span id="cb43-209"><a href="#cb43-209"></a><span class="ss">    - </span>With food (-0.28)</span>
+<span id="cb43-209"><a href="#cb43-209"></a><span class="ss">        -   </span>National (-0.27)</span>
 <span id="cb43-210"><a href="#cb43-210"></a></span>
-<span id="cb43-211"><a href="#cb43-211"></a><span class="ss">    - </span>Availability (Store) (-0.27)</span>
+<span id="cb43-211"><a href="#cb43-211"></a><span class="ss">        -   </span>Value (buena relación calidad/precio) (-0.26)</span>
 <span id="cb43-212"><a href="#cb43-212"></a></span>
-<span id="cb43-213"><a href="#cb43-213"></a><span class="ss">    - </span>National (-0.27)</span>
+<span id="cb43-213"><a href="#cb43-213"></a><span class="ss">        -   </span>EverydayHome (-0.24)</span>
 <span id="cb43-214"><a href="#cb43-214"></a></span>
-<span id="cb43-215"><a href="#cb43-215"></a><span class="ss">    - </span>Value (buena relación calidad/precio) (-0.26)</span>
+<span id="cb43-215"><a href="#cb43-215"></a><span class="ss">        -   </span>*Significado*: Las marcas con puntuaciones negativas aquí son las cervezas &quot;de toda la vida&quot;: nacionales, fáciles de encontrar en el súper, para comer, para estar en familia o consumir a diario en casa, y con buen precio.</span>
 <span id="cb43-216"><a href="#cb43-216"></a></span>
-<span id="cb43-217"><a href="#cb43-217"></a><span class="ss">    - </span>EverydayHome (-0.24)</span>
-<span id="cb43-218"><a href="#cb43-218"></a>    </span>
-<span id="cb43-219"><a href="#cb43-219"></a><span class="ss">    - </span>*Significado*: Las marcas con puntuaciones negativas aquí son las cervezas &quot;de toda la vida&quot;: nacionales, fáciles de encontrar en el súper, para comer, para estar en familia o consumir a diario en casa, y con buen precio.</span>
-<span id="cb43-220"><a href="#cb43-220"></a>    </span>
-<span id="cb43-221"><a href="#cb43-221"></a>    </span>
-<span id="cb43-222"><a href="#cb43-222"></a><span class="ss">- </span>**Componente Principal 2 (PC2)**: El eje de &quot;Ligereza / Juventud vs. Intensidad&quot;. Si miramos la columna PC2, la diferenciación cambia y se centra más en el sabor y el público:</span>
-<span id="cb43-223"><a href="#cb43-223"></a></span>
-<span id="cb43-224"><a href="#cb43-224"></a><span class="ss">  - </span>Valores muy positivos (El lado Ligero y Juvenil):</span>
-<span id="cb43-225"><a href="#cb43-225"></a>  </span>
-<span id="cb43-226"><a href="#cb43-226"></a><span class="ss">    - </span>Youthful (0.36) - Es la variable que más define este eje.</span>
-<span id="cb43-227"><a href="#cb43-227"></a></span>
-<span id="cb43-228"><a href="#cb43-228"></a><span class="ss">    - </span>Smooth (Suave) (0.32)</span>
-<span id="cb43-229"><a href="#cb43-229"></a></span>
-<span id="cb43-230"><a href="#cb43-230"></a><span class="ss">    - </span>EasyToDrink (0.30)</span>
-<span id="cb43-231"><a href="#cb43-231"></a></span>
-<span id="cb43-232"><a href="#cb43-232"></a><span class="ss">    - </span>Refreshing (0.30)</span>
-<span id="cb43-233"><a href="#cb43-233"></a></span>
-<span id="cb43-234"><a href="#cb43-234"></a><span class="ss">    - </span>Watery (Aguada) (0.27)</span>
-<span id="cb43-235"><a href="#cb43-235"></a></span>
-<span id="cb43-236"><a href="#cb43-236"></a><span class="ss">    - </span>WellKnown (0.23)</span>
-<span id="cb43-237"><a href="#cb43-237"></a>    </span>
-<span id="cb43-238"><a href="#cb43-238"></a><span class="ss">    - </span>*Significado*: Cervezas muy fáciles de beber, refrescantes, suaves (incluso percibidas como algo aguadas) y fuertemente asociadas a un público muy joven y a fiestas (Home party drink tiene 0.20).</span>
-<span id="cb43-239"><a href="#cb43-239"></a>    </span>
-<span id="cb43-240"><a href="#cb43-240"></a><span class="ss">  - </span>Valores muy negativos (El lado Intenso):</span>
-<span id="cb43-241"><a href="#cb43-241"></a>  </span>
-<span id="cb43-242"><a href="#cb43-242"></a><span class="ss">    - </span>Bitter (Amarga) (-0.32)</span>
-<span id="cb43-243"><a href="#cb43-243"></a></span>
-<span id="cb43-244"><a href="#cb43-244"></a><span class="ss">    - </span>*Significado*: Básicamente, este lado se define por la oposición a lo anterior. Son cervezas donde predomina un sabor intenso y amargo.</span>
-<span id="cb43-245"><a href="#cb43-245"></a></span>
-<span id="cb43-246"><a href="#cb43-246"></a></span>
-<span id="cb43-247"><a href="#cb43-247"></a>Finalmente, veamos los scores o puntuaciones:</span>
-<span id="cb43-248"><a href="#cb43-248"></a></span>
-<span id="cb43-251"><a href="#cb43-251"></a><span class="in">```{r}</span></span>
-<span id="cb43-252"><a href="#cb43-252"></a><span class="co"># Puntuaciones</span></span>
-<span id="cb43-253"><a href="#cb43-253"></a><span class="fu">round</span>(modelo_pca<span class="sc">$</span>x[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="dv">2</span>)</span>
-<span id="cb43-254"><a href="#cb43-254"></a><span class="in">```</span></span>
-<span id="cb43-255"><a href="#cb43-255"></a>Tenemos, como hemos visto antes, dos ejes:</span>
-<span id="cb43-256"><a href="#cb43-256"></a></span>
-<span id="cb43-257"><a href="#cb43-257"></a><span class="ss">- </span>Eje X (PC1): Valores negativos = Cerveza Nacional, Tradicional, Cotidiana y Económica. / Valores positivos = Cerveza Internacional, Premium, Cara y Sofisticada.</span>
-<span id="cb43-258"><a href="#cb43-258"></a></span>
-<span id="cb43-259"><a href="#cb43-259"></a><span class="ss">- </span>Eje Y (PC2): Valores negativos = Sabor Amargo e Intenso. / Valores positivos = Sabor Suave, Refrescante, Fácil de beber y Juvenil.</span>
-<span id="cb43-260"><a href="#cb43-260"></a></span>
-<span id="cb43-261"><a href="#cb43-261"></a>Con estas coordenadas, podemos dividir el mercado en 3 grandes grupos o territorios competitivos:</span>
-<span id="cb43-262"><a href="#cb43-262"></a></span>
-<span id="cb43-263"><a href="#cb43-263"></a><span class="ss">1. </span>El bloque &quot;Nacional y Cotidiano&quot; (A la izquierda del mapa)</span>
-<span id="cb43-264"><a href="#cb43-264"></a>  </span>
-<span id="cb43-265"><a href="#cb43-265"></a><span class="ss">  - </span>Mahou (-3.77, 0.43)</span>
-<span id="cb43-266"><a href="#cb43-266"></a></span>
-<span id="cb43-267"><a href="#cb43-267"></a><span class="ss">  - </span>Cruzcampo (-3.66, -0.70)</span>
-<span id="cb43-268"><a href="#cb43-268"></a></span>
-<span id="cb43-269"><a href="#cb43-269"></a><span class="ss">  - </span>San Miguel (-3.28, -0.38)</span>
-<span id="cb43-270"><a href="#cb43-270"></a></span>
-<span id="cb43-271"><a href="#cb43-271"></a><span class="ss">  - </span>Estrella (-2.14, -1.41)</span>
-<span id="cb43-272"><a href="#cb43-272"></a></span>
-<span id="cb43-273"><a href="#cb43-273"></a><span class="ss">  - </span>Amstel (-0.95, -2.24)</span>
-<span id="cb43-274"><a href="#cb43-274"></a>    </span>
-<span id="cb43-275"><a href="#cb43-275"></a><span class="ss">  - </span>*Interpretación*: Todas tienen valores fuertemente negativos en el PC1. Estas son las cervezas &quot;de toda la vida&quot;. El consumidor las percibe como marcas para tomar en familia, comiendo o a diario en casa, con buena relación calidad-precio y muy disponibles. *Diferenciación interna*: Amstel y Estrella se perciben como las más amargas/intensas de este grupo (PC2 negativo), mientras que Mahou es la más suave (PC2 ligeramente positivo). Estas marcas compiten a muerte entre ellas por el mismo espacio mental.</span>
-<span id="cb43-276"><a href="#cb43-276"></a>    </span>
-<span id="cb43-277"><a href="#cb43-277"></a><span class="ss">2. </span>El bloque &quot;Fiesta, Juventud y Refresco&quot; (Arriba en el mapa)</span>
-<span id="cb43-278"><a href="#cb43-278"></a>  </span>
-<span id="cb43-279"><a href="#cb43-279"></a><span class="ss">  - </span>Coronita (1.95, 4.33)</span>
-<span id="cb43-280"><a href="#cb43-280"></a>    </span>
-<span id="cb43-281"><a href="#cb43-281"></a><span class="ss">  - </span>Heineken (0.29, 4.21)</span>
-<span id="cb43-282"><a href="#cb43-282"></a>    </span>
-<span id="cb43-283"><a href="#cb43-283"></a><span class="ss">  - </span>*Interpretación*: Destacan brutalmente por tener un PC2 altísimo (más de 4 puntos). Son las reinas absolutas de la percepción &quot;Suave, Refrescante, Fácil de beber y Juvenil&quot;. *Diferenciación interna*: Coronita (PC1 de 1.95) se percibe como más cara, de club nocturno o de &quot;postureo&quot; que Heineken, la cual es más neutra en el eje del precio/exclusividad (PC1 cercano a 0).</span>
-<span id="cb43-284"><a href="#cb43-284"></a>    </span>
-<span id="cb43-285"><a href="#cb43-285"></a><span class="ss">3. </span>El bloque &quot;Premium, Internacional y/o Intenso&quot; (A la derecha / Abajo)</span>
-<span id="cb43-286"><a href="#cb43-286"></a>  </span>
-<span id="cb43-287"><a href="#cb43-287"></a><span class="ss">  - </span>Bud (5.13, -0.82)</span>
-<span id="cb43-288"><a href="#cb43-288"></a></span>
-<span id="cb43-289"><a href="#cb43-289"></a><span class="ss">  - </span>VollDamm (3.68, -3.57)</span>
-<span id="cb43-290"><a href="#cb43-290"></a></span>
-<span id="cb43-291"><a href="#cb43-291"></a><span class="ss">  - </span>Carlsberg (2.75, 0.14)</span>
-<span id="cb43-292"><a href="#cb43-292"></a>    </span>
-<span id="cb43-293"><a href="#cb43-293"></a><span class="ss">  - </span>*Interpretación*: Tienen valores positivos muy altos en el PC1. Se perciben como cervezas de alto estatus, caras o fuertemente internacionales. *Diferenciación interna*: VollDamm tiene un perfil muy extremo: es Premium/Cara (3.68) pero también es la cerveza percibida como más amarga y fuerte de todo el estudio con mucha diferencia (PC2 de -3.57). Su posicionamiento es &quot;Intensidad y Calidad&quot;. Bud es percibida como la más cara o exclusiva del estudio (el PC1 más alto de todos: 5.13), con un toque de amargor. Carlsberg se percibe como Premium (2.75), pero no se asocia ni con un sabor amargo ni con uno especialmente ligero o juvenil (está justo en el medio con un PC2 de 0.14).</span>
-<span id="cb43-294"><a href="#cb43-294"></a>    </span>
-<span id="cb43-295"><a href="#cb43-295"></a>En el gráfico Biplot siguiente, veremos todo lo anterior de forma visual:</span>
-<span id="cb43-296"><a href="#cb43-296"></a></span>
-<span id="cb43-297"><a href="#cb43-297"></a></span>
-<span id="cb43-300"><a href="#cb43-300"></a><span class="in">```{r}</span></span>
-<span id="cb43-301"><a href="#cb43-301"></a><span class="co"># BIPLOT</span></span>
-<span id="cb43-302"><a href="#cb43-302"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb43-303"><a href="#cb43-303"></a><span class="fu">biplot</span>(modelo_pca, <span class="at">scale =</span> <span class="dv">0</span>, <span class="at">cex =</span> <span class="fl">0.8</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
-<span id="cb43-304"><a href="#cb43-304"></a>       <span class="at">main =</span> <span class="st">&quot;Biplot PCA&quot;</span>)</span>
-<span id="cb43-305"><a href="#cb43-305"></a><span class="in">```</span></span>
+<span id="cb43-217"><a href="#cb43-217"></a><span class="ss">-   </span>**Componente Principal 2 (PC2)**: El eje de &quot;Ligereza / Juventud vs. Intensidad&quot;. Si miramos la columna PC2, la diferenciación cambia y se centra más en el sabor y el público:</span>
+<span id="cb43-218"><a href="#cb43-218"></a></span>
+<span id="cb43-219"><a href="#cb43-219"></a><span class="ss">    -   </span>Valores muy positivos (El lado Ligero y Juvenil):</span>
+<span id="cb43-220"><a href="#cb43-220"></a></span>
+<span id="cb43-221"><a href="#cb43-221"></a><span class="ss">        -   </span>Youthful (0.36) - Es la variable que más define este eje.</span>
+<span id="cb43-222"><a href="#cb43-222"></a></span>
+<span id="cb43-223"><a href="#cb43-223"></a><span class="ss">        -   </span>Smooth (Suave) (0.32)</span>
+<span id="cb43-224"><a href="#cb43-224"></a></span>
+<span id="cb43-225"><a href="#cb43-225"></a><span class="ss">        -   </span>EasyToDrink (0.30)</span>
+<span id="cb43-226"><a href="#cb43-226"></a></span>
+<span id="cb43-227"><a href="#cb43-227"></a><span class="ss">        -   </span>Refreshing (0.30)</span>
+<span id="cb43-228"><a href="#cb43-228"></a></span>
+<span id="cb43-229"><a href="#cb43-229"></a><span class="ss">        -   </span>Watery (Aguada) (0.27)</span>
+<span id="cb43-230"><a href="#cb43-230"></a></span>
+<span id="cb43-231"><a href="#cb43-231"></a><span class="ss">        -   </span>WellKnown (0.23)</span>
+<span id="cb43-232"><a href="#cb43-232"></a></span>
+<span id="cb43-233"><a href="#cb43-233"></a><span class="ss">        -   </span>*Significado*: Cervezas muy fáciles de beber, refrescantes, suaves (incluso percibidas como algo aguadas) y fuertemente asociadas a un público muy joven y a fiestas (Home party drink tiene 0.20).</span>
+<span id="cb43-234"><a href="#cb43-234"></a></span>
+<span id="cb43-235"><a href="#cb43-235"></a><span class="ss">    -   </span>Valores muy negativos (El lado Intenso):</span>
+<span id="cb43-236"><a href="#cb43-236"></a></span>
+<span id="cb43-237"><a href="#cb43-237"></a><span class="ss">        -   </span>Bitter (Amarga) (-0.32)</span>
+<span id="cb43-238"><a href="#cb43-238"></a></span>
+<span id="cb43-239"><a href="#cb43-239"></a><span class="ss">        -   </span>*Significado*: Básicamente, este lado se define por la oposición a lo anterior. Son cervezas donde predomina un sabor intenso y amargo.</span>
+<span id="cb43-240"><a href="#cb43-240"></a></span>
+<span id="cb43-241"><a href="#cb43-241"></a>Finalmente, veamos los scores o puntuaciones:</span>
+<span id="cb43-242"><a href="#cb43-242"></a></span>
+<span id="cb43-245"><a href="#cb43-245"></a><span class="in">```{r}</span></span>
+<span id="cb43-246"><a href="#cb43-246"></a><span class="co"># Puntuaciones</span></span>
+<span id="cb43-247"><a href="#cb43-247"></a><span class="fu">round</span>(modelo_pca<span class="sc">$</span>x[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="dv">2</span>)</span>
+<span id="cb43-248"><a href="#cb43-248"></a><span class="in">```</span></span>
+<span id="cb43-249"><a href="#cb43-249"></a></span>
+<span id="cb43-250"><a href="#cb43-250"></a>Tenemos, como hemos visto antes, dos ejes:</span>
+<span id="cb43-251"><a href="#cb43-251"></a></span>
+<span id="cb43-252"><a href="#cb43-252"></a><span class="ss">-   </span>Eje X (PC1): Valores negativos = Cerveza Nacional, Tradicional, Cotidiana y Económica. / Valores positivos = Cerveza Internacional, Premium, Cara y Sofisticada.</span>
+<span id="cb43-253"><a href="#cb43-253"></a></span>
+<span id="cb43-254"><a href="#cb43-254"></a><span class="ss">-   </span>Eje Y (PC2): Valores negativos = Sabor Amargo e Intenso. / Valores positivos = Sabor Suave, Refrescante, Fácil de beber y Juvenil.</span>
+<span id="cb43-255"><a href="#cb43-255"></a></span>
+<span id="cb43-256"><a href="#cb43-256"></a>Con estas coordenadas, podemos dividir el mercado en 3 grandes grupos o territorios competitivos:</span>
+<span id="cb43-257"><a href="#cb43-257"></a></span>
+<span id="cb43-258"><a href="#cb43-258"></a><span class="ss">1.  </span>El bloque &quot;Nacional y Cotidiano&quot; (A la izquierda del mapa)</span>
+<span id="cb43-259"><a href="#cb43-259"></a></span>
+<span id="cb43-260"><a href="#cb43-260"></a><span class="ss">-   </span>Mahou (-3.77, 0.43)</span>
+<span id="cb43-261"><a href="#cb43-261"></a></span>
+<span id="cb43-262"><a href="#cb43-262"></a><span class="ss">-   </span>Cruzcampo (-3.66, -0.70)</span>
+<span id="cb43-263"><a href="#cb43-263"></a></span>
+<span id="cb43-264"><a href="#cb43-264"></a><span class="ss">-   </span>San Miguel (-3.28, -0.38)</span>
+<span id="cb43-265"><a href="#cb43-265"></a></span>
+<span id="cb43-266"><a href="#cb43-266"></a><span class="ss">-   </span>Estrella (-2.14, -1.41)</span>
+<span id="cb43-267"><a href="#cb43-267"></a></span>
+<span id="cb43-268"><a href="#cb43-268"></a><span class="ss">-   </span>Amstel (-0.95, -2.24)</span>
+<span id="cb43-269"><a href="#cb43-269"></a></span>
+<span id="cb43-270"><a href="#cb43-270"></a><span class="ss">-   </span>*Interpretación*: Todas tienen valores fuertemente negativos en el PC1. Estas son las cervezas &quot;de toda la vida&quot;. El consumidor las percibe como marcas para tomar en familia, comiendo o a diario en casa, con buena relación calidad-precio y muy disponibles. *Diferenciación interna*: Amstel y Estrella se perciben como las más amargas/intensas de este grupo (PC2 negativo), mientras que Mahou es la más suave (PC2 ligeramente positivo). Estas marcas compiten a muerte entre ellas por el mismo espacio mental.</span>
+<span id="cb43-271"><a href="#cb43-271"></a></span>
+<span id="cb43-272"><a href="#cb43-272"></a><span class="ss">2.  </span>El bloque &quot;Fiesta, Juventud y Refresco&quot; (Arriba en el mapa)</span>
+<span id="cb43-273"><a href="#cb43-273"></a></span>
+<span id="cb43-274"><a href="#cb43-274"></a><span class="ss">-   </span>Coronita (1.95, 4.33)</span>
+<span id="cb43-275"><a href="#cb43-275"></a></span>
+<span id="cb43-276"><a href="#cb43-276"></a><span class="ss">-   </span>Heineken (0.29, 4.21)</span>
+<span id="cb43-277"><a href="#cb43-277"></a></span>
+<span id="cb43-278"><a href="#cb43-278"></a><span class="ss">-   </span>*Interpretación*: Destacan brutalmente por tener un PC2 altísimo (más de 4 puntos). Son las reinas absolutas de la percepción &quot;Suave, Refrescante, Fácil de beber y Juvenil&quot;. *Diferenciación interna*: Coronita (PC1 de 1.95) se percibe como más cara, de club nocturno o de &quot;postureo&quot; que Heineken, la cual es más neutra en el eje del precio/exclusividad (PC1 cercano a 0).</span>
+<span id="cb43-279"><a href="#cb43-279"></a></span>
+<span id="cb43-280"><a href="#cb43-280"></a><span class="ss">3.  </span>El bloque &quot;Premium, Internacional y/o Intenso&quot; (A la derecha / Abajo)</span>
+<span id="cb43-281"><a href="#cb43-281"></a></span>
+<span id="cb43-282"><a href="#cb43-282"></a><span class="ss">-   </span>Bud (5.13, -0.82)</span>
+<span id="cb43-283"><a href="#cb43-283"></a></span>
+<span id="cb43-284"><a href="#cb43-284"></a><span class="ss">-   </span>VollDamm (3.68, -3.57)</span>
+<span id="cb43-285"><a href="#cb43-285"></a></span>
+<span id="cb43-286"><a href="#cb43-286"></a><span class="ss">-   </span>Carlsberg (2.75, 0.14)</span>
+<span id="cb43-287"><a href="#cb43-287"></a></span>
+<span id="cb43-288"><a href="#cb43-288"></a><span class="ss">-   </span>*Interpretación*: Tienen valores positivos muy altos en el PC1. Se perciben como cervezas de alto estatus, caras o fuertemente internacionales. *Diferenciación interna*: VollDamm tiene un perfil muy extremo: es Premium/Cara (3.68) pero también es la cerveza percibida como más amarga y fuerte de todo el estudio con mucha diferencia (PC2 de -3.57). Su posicionamiento es &quot;Intensidad y Calidad&quot;. Bud es percibida como la más cara o exclusiva del estudio (el PC1 más alto de todos: 5.13), con un toque de amargor. Carlsberg se percibe como Premium (2.75), pero no se asocia ni con un sabor amargo ni con uno especialmente ligero o juvenil (está justo en el medio con un PC2 de 0.14).</span>
+<span id="cb43-289"><a href="#cb43-289"></a></span>
+<span id="cb43-290"><a href="#cb43-290"></a>En el gráfico Biplot siguiente, veremos todo lo anterior de forma visual:</span>
+<span id="cb43-291"><a href="#cb43-291"></a></span>
+<span id="cb43-294"><a href="#cb43-294"></a><span class="in">```{r}</span></span>
+<span id="cb43-295"><a href="#cb43-295"></a><span class="co"># BIPLOT</span></span>
+<span id="cb43-296"><a href="#cb43-296"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb43-297"><a href="#cb43-297"></a><span class="fu">biplot</span>(modelo_pca, <span class="at">scale =</span> <span class="dv">0</span>, <span class="at">cex =</span> <span class="fl">0.8</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb43-298"><a href="#cb43-298"></a>       <span class="at">main =</span> <span class="st">&quot;Biplot PCA&quot;</span>)</span>
+<span id="cb43-299"><a href="#cb43-299"></a><span class="in">```</span></span>
+<span id="cb43-300"><a href="#cb43-300"></a></span>
+<span id="cb43-301"><a href="#cb43-301"></a><span class="fu">## Análisis Factorial</span></span>
+<span id="cb43-302"><a href="#cb43-302"></a></span>
+<span id="cb43-303"><a href="#cb43-303"></a>El **Análisis Factorial** (AF) es una técnica estadística multivariante cuyo propósito fundamental es identificar la estructura subyacente de un conjunto de datos. Busca explicar las correlaciones observadas entre un gran número de variables manifiestas (observables) a través de un número menor de variables latentes (no observables), que reciben el nombre de **factores**.</span>
+<span id="cb43-304"><a href="#cb43-304"></a></span>
+<span id="cb43-305"><a href="#cb43-305"></a>A diferencia del Análisis de Componentes Principales (ACP) —que es un método de reducción de datos empíricos que intenta maximizar la varianza total explicada—, el Análisis Factorial parte de un modelo teórico. Asume que la varianza de cada variable se divide en dos partes:</span>
 <span id="cb43-306"><a href="#cb43-306"></a></span>
-<span id="cb43-307"><a href="#cb43-307"></a></span>
+<span id="cb43-307"><a href="#cb43-307"></a><span class="ss">1.  </span>**Comunalidad**: La varianza compartida con otras variables (la que explican los factores comunes).</span>
 <span id="cb43-308"><a href="#cb43-308"></a></span>
-<span id="cb43-309"><a href="#cb43-309"></a><span class="fu">## Análisis Factorial</span></span>
+<span id="cb43-309"><a href="#cb43-309"></a><span class="ss">2.  </span>**Especificidad (y error)**: La varianza única e intrínseca de esa variable concreta.</span>
 <span id="cb43-310"><a href="#cb43-310"></a></span>
-<span id="cb43-311"><a href="#cb43-311"></a>El **Análisis Factorial** (AF) es una técnica estadística multivariante cuyo propósito fundamental es identificar la estructura subyacente de un conjunto de datos. Busca explicar las correlaciones observadas entre un gran número de variables manifiestas (observables) a través de un número menor de variables latentes (no observables), que reciben el nombre de **factores**.</span>
+<span id="cb43-311"><a href="#cb43-311"></a>El AF busca modelar únicamente esa varianza compartida. Es especialmente útil en ciencias sociales y estudios de mercado para medir constructos abstractos (como la &quot;lealtad de marca&quot;, la &quot;sofisticación&quot; o la &quot;calidad percibida&quot;) que no pueden medirse con una sola pregunta.</span>
 <span id="cb43-312"><a href="#cb43-312"></a></span>
-<span id="cb43-313"><a href="#cb43-313"></a>A diferencia del Análisis de Componentes Principales (ACP) —que es un método de reducción de datos empíricos que intenta maximizar la varianza total explicada—, el Análisis Factorial parte de un modelo teórico. Asume que la varianza de cada variable se divide en dos partes:</span>
+<span id="cb43-313"><a href="#cb43-313"></a>En el caso de nuestros datos **no es estadísticamente ni matemáticamente viable realizar un Análisis Factorial** utilizando la matriz de percepciones completa (22 atributos sobre 10 marcas de cerveza), por dos razones principales:</span>
 <span id="cb43-314"><a href="#cb43-314"></a></span>
-<span id="cb43-315"><a href="#cb43-315"></a><span class="ss">1. </span>**Comunalidad**: La varianza compartida con otras variables (la que explican los factores comunes).</span>
+<span id="cb43-315"><a href="#cb43-315"></a><span class="ss">1.  </span>**Problema de dimensionalidad (Matriz Singular)**: En nuestro conjunto de datos, el número de variables o atributos ($P = 22$) es superior al número de observaciones o marcas ($N = 10$). Matemáticamente, esto genera una matriz de correlación &quot;singular&quot; o no definida positiva. Su determinante es cero o cercano a cero, lo que imposibilita la inversión de la matriz, un paso algebraico indispensable para los algoritmos de extracción de factores (como Máxima Verosimilitud).</span>
 <span id="cb43-316"><a href="#cb43-316"></a></span>
-<span id="cb43-317"><a href="#cb43-317"></a><span class="ss">2. </span>**Especificidad (y error)**: La varianza única e intrínseca de esa variable concreta.</span>
+<span id="cb43-317"><a href="#cb43-317"></a><span class="ss">2.  </span>**Tamaño muestral crítico**: La literatura estadística (ej. Hair et al., Comrey y Lee) establece reglas estrictas para el Análisis Factorial Exploratorio. Se exige un **tamaño de muestra mínimo absoluto de 50 observaciones (idealmente** $&gt;100$) y una ratio de **al menos 5 observaciones por cada variable analizada**. Con 10 marcas, carecemos de grados de libertad suficientes; los factores extraídos serían fruto del azar (&quot;ruido&quot; estadístico) y no serían generalizables. Pruebas formales de adecuación muestral, como el estadístico KMO (Kaiser-Meyer-Olkin), arrojarían resultados inaceptables o darían error computacional.</span>
 <span id="cb43-318"><a href="#cb43-318"></a></span>
-<span id="cb43-319"><a href="#cb43-319"></a>El AF busca modelar únicamente esa varianza compartida. Es especialmente útil en ciencias sociales y estudios de mercado para medir constructos abstractos (como la &quot;lealtad de marca&quot;, la &quot;sofisticación&quot; o la &quot;calidad percibida&quot;) que no pueden medirse con una sola pregunta.</span>
+<span id="cb43-319"><a href="#cb43-319"></a>Por tanto, para que el modelo sea matemáticamente ejecutable (es decir, $N &gt; P$ y evitando la colinealidad perfecta), debemos realizar una reducción drástica y teórica a un subconjunto de variables. Así, basándonos en el Análisis de Componentes Principales realizado en la sección anterior, y en el número de grados de libertad necesarios para realizar el análisis facatorial: $$df = \frac{1}{2} <span class="co">[</span><span class="ot">(P - M)^2 - (P + M)</span><span class="co">]</span>$$ donde $P$ es el número de variables analizadas y $M$ es el número de factores que deseamos extraer, tenemos que necesitamos como mínimo ($df = 1$), 5 variables ($P = 5$ y $M = 2$:): $$df = \frac{1}{2} <span class="co">[</span><span class="ot">(5 - 2)^2 - (5 + 2)</span><span class="co">]</span> = \frac{1}{2} <span class="co">[</span><span class="ot">9 - 7</span><span class="co">]</span> = 1$$</span>
 <span id="cb43-320"><a href="#cb43-320"></a></span>
-<span id="cb43-321"><a href="#cb43-321"></a>En el caso de nuestros datos **no es estadísticamente ni matemáticamente viable realizar un Análisis Factorial** utilizando la matriz de percepciones completa (22 atributos sobre 10 marcas de cerveza), por dos razones principales:</span>
+<span id="cb43-321"><a href="#cb43-321"></a>Si observamos la matriz de rotación, observamos que:</span>
 <span id="cb43-322"><a href="#cb43-322"></a></span>
-<span id="cb43-323"><a href="#cb43-323"></a><span class="ss">1. </span>**Problema de dimensionalidad (Matriz Singular)**: En nuestro conjunto de datos, el número de variables o atributos ($P = 22$) es superior al número de observaciones o marcas ($N = 10$). Matemáticamente, esto genera una matriz de correlación &quot;singular&quot; o no definida positiva. Su determinante es cero o cercano a cero, lo que imposibilita la inversión de la matriz, un paso algebraico indispensable para los algoritmos de extracción de factores (como Máxima Verosimilitud).</span>
+<span id="cb43-323"><a href="#cb43-323"></a><span class="ss">-   </span>Para el componente 1 (eje x): Vimos que las variables con mayor carga positiva eran <span class="in">`Expensive`</span> ($0.28$) e <span class="in">`International`</span> ($0.26$) y una de las mayores cargas negativas era <span class="in">`EverydayHome`</span> ($-0.24$). Al elegir estas variables, nos aseguramos de que el Factor 1 mida el constructo latente de &quot;Estatus/Precio frente a Consumo Diario&quot;.</span>
 <span id="cb43-324"><a href="#cb43-324"></a></span>
-<span id="cb43-325"><a href="#cb43-325"></a><span class="ss">2. </span>**Tamaño muestral crítico**: La literatura estadística (ej. Hair et al., Comrey y Lee) establece reglas estrictas para el Análisis Factorial Exploratorio. Se exige un **tamaño de muestra mínimo absoluto de 50 observaciones (idealmente $&gt;100$)** y una ratio de **al menos 5 observaciones por cada variable analizada**. Con 10 marcas, carecemos de grados de libertad suficientes; los factores extraídos serían fruto del azar (&quot;ruido&quot; estadístico) y no serían generalizables. Pruebas formales de adecuación muestral, como el estadístico KMO (Kaiser-Meyer-Olkin), arrojarían resultados inaceptables o darían error computacional.</span>
+<span id="cb43-325"><a href="#cb43-325"></a><span class="ss">-   </span>Para el Componente 2 (eje y): La variable con mayor carga positiva fue <span class="in">`Youthful`</span> ($0.36$) y la mayor carga negativa fue <span class="in">`Bitter`</span> ($-0.32$). Al elegir este par, nos aseguramos de que el Factor 2 mida el constructo de &quot;Identidad Juvenil/Suave frente a Intensidad/Amargor&quot;.</span>
 <span id="cb43-326"><a href="#cb43-326"></a></span>
-<span id="cb43-327"><a href="#cb43-327"></a>Por tanto, para que el modelo sea matemáticamente ejecutable (es decir, $N &gt; P$ y evitando la colinealidad perfecta), debemos realizar una reducción drástica y teórica a un subconjunto de variables. Así, basándonos en el Análisis de Componentes Principales realizado en la sección anterior, y en el número de grados de libertad necesarios para realizar el análisis facatorial:</span>
-<span id="cb43-328"><a href="#cb43-328"></a>$$df = \frac{1}{2} <span class="co">[</span><span class="ot">(P - M)^2 - (P + M)</span><span class="co">]</span>$$</span>
-<span id="cb43-329"><a href="#cb43-329"></a>donde $P$ es el número de variables analizadas y $M$ es el número de factores que deseamos extraer, tenemos que necesitamos como mínimo ($df = 1$), 5 variables ($P = 5$ y $M = 2$:):</span>
-<span id="cb43-330"><a href="#cb43-330"></a>$$df = \frac{1}{2} <span class="co">[</span><span class="ot">(5 - 2)^2 - (5 + 2)</span><span class="co">]</span> = \frac{1}{2} <span class="co">[</span><span class="ot">9 - 7</span><span class="co">]</span> = 1$$</span>
-<span id="cb43-331"><a href="#cb43-331"></a></span>
-<span id="cb43-332"><a href="#cb43-332"></a>Si observamos la matriz de rotación, observamos que:</span>
-<span id="cb43-333"><a href="#cb43-333"></a></span>
-<span id="cb43-334"><a href="#cb43-334"></a><span class="ss">- </span>Para el componente 1 (eje x): Vimos que las variables con mayor carga positiva eran <span class="in">`Expensive`</span> ($0.28$) e <span class="in">`International`</span> ($0.26$) y una de las mayores cargas negativas era <span class="in">`EverydayHome`</span> ($-0.24$). Al elegir estas variables, nos aseguramos de que el Factor 1 mida el constructo latente de &quot;Estatus/Precio frente a Consumo Diario&quot;.</span>
-<span id="cb43-335"><a href="#cb43-335"></a></span>
-<span id="cb43-336"><a href="#cb43-336"></a><span class="ss">- </span>Para el Componente 2 (eje y): La variable con mayor carga positiva fue <span class="in">`Youthful`</span> ($0.36$) y la mayor carga negativa fue <span class="in">`Bitter`</span> ($-0.32$). Al elegir este par, nos aseguramos de que el Factor 2 mida el constructo de &quot;Identidad Juvenil/Suave frente a Intensidad/Amargor&quot;.</span>
-<span id="cb43-337"><a href="#cb43-337"></a></span>
-<span id="cb43-338"><a href="#cb43-338"></a>Sabemos que estas variables son ortogonales por dos razones, una matemática y otra empírica: **i) **Por la construcción matemática del ACP (Ejes Ortogonales. El algoritmo del Análisis de Componentes Principales fuerza a que el Componente 1 (PC1) y el Componente 2 (PC2) sean estrictamente perpendiculares entre sí. Su correlación es exactamente $0$) y **ii)** Por la Matriz de Correlación (Evidencia Empírica. Si revisamos los datos numéricos de la matriz de correlación original para estas cuatro variables, veríamos que sus coeficientes de correlación de Pearson ($r$) son muy cercanos a cero cuando cruzamos variables de distintos ejes).</span>
-<span id="cb43-339"><a href="#cb43-339"></a></span>
-<span id="cb43-340"><a href="#cb43-340"></a>Por tanto, *al seleccionar estas cuatro variables, &quot;sintetizamos&quot; los 22 atributos originales en los 5 conceptos que provocan la mayor diferenciación de las marcas en el mercado*.</span>
-<span id="cb43-341"><a href="#cb43-341"></a></span>
-<span id="cb43-342"><a href="#cb43-342"></a>Aplicamos el código:</span>
-<span id="cb43-343"><a href="#cb43-343"></a></span>
-<span id="cb43-346"><a href="#cb43-346"></a><span class="in">```{r}</span></span>
-<span id="cb43-347"><a href="#cb43-347"></a><span class="co"># datos_analisis contiene las 10 marcas como filas y los atributos numéricos como columnas</span></span>
-<span id="cb43-348"><a href="#cb43-348"></a><span class="co"># Seleccionamos las variables representativas elegidas</span></span>
-<span id="cb43-349"><a href="#cb43-349"></a>variables_seleccionadas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Expensive&quot;</span>, <span class="st">&quot;International&quot;</span>, <span class="st">&quot;Family&quot;</span>, <span class="st">&quot;Youthful&quot;</span>, <span class="st">&quot;Bitter&quot;</span>)</span>
-<span id="cb43-350"><a href="#cb43-350"></a>datos_reducidos <span class="ot">&lt;-</span> datos_analisis[, variables_seleccionadas]</span>
-<span id="cb43-351"><a href="#cb43-351"></a></span>
-<span id="cb43-352"><a href="#cb43-352"></a><span class="co"># Prueba de adecuación</span></span>
-<span id="cb43-353"><a href="#cb43-353"></a><span class="fu">library</span>(psych)</span>
-<span id="cb43-354"><a href="#cb43-354"></a><span class="fu">print</span>(<span class="fu">KMO</span>(datos_reducidos)) </span>
-<span id="cb43-355"><a href="#cb43-355"></a></span>
-<span id="cb43-356"><a href="#cb43-356"></a><span class="in">```</span></span>
-<span id="cb43-357"><a href="#cb43-357"></a>El estadístico KMO (Kaiser-Meyer-Olkin) evalúa si las correlaciones parciales entre las variables son lo suficientemente fuertes como para agruparse en factores. Sus valores van de 0 a 1.</span>
-<span id="cb43-358"><a href="#cb43-358"></a></span>
-<span id="cb43-359"><a href="#cb43-359"></a>Vemos que tenemos un KMO Global de $0.65&gt;0.50$ (mínimo aceptable). Por encima de $0.60$ se considera &quot;mediocre pero válido&quot; para continuar. Obtener un $0.65$ con solo $10$ marcas demuestra que las 5 variables que seleccionamos conforman una estructura coherente.</span>
-<span id="cb43-360"><a href="#cb43-360"></a></span>
-<span id="cb43-361"><a href="#cb43-361"></a>Por otro lado, tenemos que el KMO por variable (MSA) arroja que International ($0.81$) y Family ($0.70$) tienen una adecuación muy buena. La única nota de atención es Youthful ($0.46$), que al estar por debajo de $0.50$ nos indica que, estrictamente hablando, tiene poca correlación compartida con el resto. No obstante, para los fines de este estudio, lo mantenemos en el modelo.</span>
-<span id="cb43-362"><a href="#cb43-362"></a></span>
-<span id="cb43-363"><a href="#cb43-363"></a></span>
+<span id="cb43-327"><a href="#cb43-327"></a>Sabemos que estas variables son ortogonales por dos razones, una matemática y otra empírica: **i)** Por la construcción matemática del ACP (Ejes Ortogonales. El algoritmo del Análisis de Componentes Principales fuerza a que el Componente 1 (PC1) y el Componente 2 (PC2) sean estrictamente perpendiculares entre sí. Su correlación es exactamente $0$) y **ii)** Por la Matriz de Correlación (Evidencia Empírica. Si revisamos los datos numéricos de la matriz de correlación original para estas cuatro variables, veríamos que sus coeficientes de correlación de Pearson ($r$) son muy cercanos a cero cuando cruzamos variables de distintos ejes).</span>
+<span id="cb43-328"><a href="#cb43-328"></a></span>
+<span id="cb43-329"><a href="#cb43-329"></a>Por tanto, *al seleccionar estas cuatro variables, &quot;sintetizamos&quot; los 22 atributos originales en los 5 conceptos que provocan la mayor diferenciación de las marcas en el mercado*.</span>
+<span id="cb43-330"><a href="#cb43-330"></a></span>
+<span id="cb43-331"><a href="#cb43-331"></a>Aplicamos el código:</span>
+<span id="cb43-332"><a href="#cb43-332"></a></span>
+<span id="cb43-335"><a href="#cb43-335"></a><span class="in">```{r}</span></span>
+<span id="cb43-336"><a href="#cb43-336"></a><span class="co"># datos_analisis contiene las 10 marcas como filas y los atributos numéricos como columnas</span></span>
+<span id="cb43-337"><a href="#cb43-337"></a><span class="co"># Seleccionamos las variables representativas elegidas</span></span>
+<span id="cb43-338"><a href="#cb43-338"></a>variables_seleccionadas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Expensive&quot;</span>, <span class="st">&quot;International&quot;</span>, <span class="st">&quot;Family&quot;</span>, <span class="st">&quot;Youthful&quot;</span>, <span class="st">&quot;Bitter&quot;</span>)</span>
+<span id="cb43-339"><a href="#cb43-339"></a>datos_reducidos <span class="ot">&lt;-</span> datos_analisis[, variables_seleccionadas]</span>
+<span id="cb43-340"><a href="#cb43-340"></a></span>
+<span id="cb43-341"><a href="#cb43-341"></a><span class="co"># Prueba de adecuación</span></span>
+<span id="cb43-342"><a href="#cb43-342"></a><span class="fu">library</span>(psych)</span>
+<span id="cb43-343"><a href="#cb43-343"></a><span class="fu">print</span>(<span class="fu">KMO</span>(datos_reducidos)) </span>
+<span id="cb43-344"><a href="#cb43-344"></a></span>
+<span id="cb43-345"><a href="#cb43-345"></a><span class="in">```</span></span>
+<span id="cb43-346"><a href="#cb43-346"></a></span>
+<span id="cb43-347"><a href="#cb43-347"></a>El estadístico KMO (Kaiser-Meyer-Olkin) evalúa si las correlaciones parciales entre las variables son lo suficientemente fuertes como para agruparse en factores. Sus valores van de 0 a 1.</span>
+<span id="cb43-348"><a href="#cb43-348"></a></span>
+<span id="cb43-349"><a href="#cb43-349"></a>Vemos que tenemos un KMO Global de $0.65&gt;0.50$ (mínimo aceptable). Por encima de $0.60$ se considera &quot;mediocre pero válido&quot; para continuar. Obtener un $0.65$ con solo $10$ marcas demuestra que las 5 variables que seleccionamos conforman una estructura coherente.</span>
+<span id="cb43-350"><a href="#cb43-350"></a></span>
+<span id="cb43-351"><a href="#cb43-351"></a>Por otro lado, tenemos que el KMO por variable (MSA) arroja que International ($0.81$) y Family ($0.70$) tienen una adecuación muy buena. La única nota de atención es Youthful ($0.46$), que al estar por debajo de $0.50$ nos indica que, estrictamente hablando, tiene poca correlación compartida con el resto. No obstante, para los fines de este estudio, lo mantenemos en el modelo.</span>
+<span id="cb43-352"><a href="#cb43-352"></a></span>
+<span id="cb43-355"><a href="#cb43-355"></a><span class="in">```{r}</span></span>
+<span id="cb43-356"><a href="#cb43-356"></a><span class="co"># Ejecutamos el Análisis Factorial (Extrayendo 2 factores)</span></span>
+<span id="cb43-357"><a href="#cb43-357"></a><span class="co"># Usamos el método de factores principales u OLS debido al pequeño tamaño muestral</span></span>
+<span id="cb43-358"><a href="#cb43-358"></a><span class="co"># Aplicamos rotación &quot;varimax&quot; para facilitar la interpretación</span></span>
+<span id="cb43-359"><a href="#cb43-359"></a><span class="co"># Matriz de Cargas Factoriales (Loadings)</span></span>
+<span id="cb43-360"><a href="#cb43-360"></a>modelo_af <span class="ot">&lt;-</span> <span class="fu">factanal</span>(datos_reducidos, <span class="at">factors =</span> <span class="dv">2</span>, <span class="at">rotation =</span> <span class="st">&quot;varimax&quot;</span>)</span>
+<span id="cb43-361"><a href="#cb43-361"></a></span>
+<span id="cb43-362"><a href="#cb43-362"></a><span class="fu">print</span>(modelo_af<span class="sc">$</span>loadings, <span class="at">cutoff =</span> <span class="fl">0.3</span>)</span>
+<span id="cb43-363"><a href="#cb43-363"></a><span class="in">```</span></span>
 <span id="cb43-364"><a href="#cb43-364"></a></span>
-<span id="cb43-365"><a href="#cb43-365"></a></span>
+<span id="cb43-365"><a href="#cb43-365"></a>Los loadings son la parte central del análisis. Representan la correlación entre cada variable y el factor latente descubierto. Valores por encima de $0.50$ se consideran fuertes, y por encima de $0.8$ son extraordinarios:</span>
 <span id="cb43-366"><a href="#cb43-366"></a></span>
-<span id="cb43-369"><a href="#cb43-369"></a><span class="in">```{r}</span></span>
-<span id="cb43-370"><a href="#cb43-370"></a><span class="co"># Ejecutamos el Análisis Factorial (Extrayendo 2 factores)</span></span>
-<span id="cb43-371"><a href="#cb43-371"></a><span class="co"># Usamos el método de factores principales u OLS debido al pequeño tamaño muestral</span></span>
-<span id="cb43-372"><a href="#cb43-372"></a><span class="co"># Aplicamos rotación &quot;varimax&quot; para facilitar la interpretación</span></span>
-<span id="cb43-373"><a href="#cb43-373"></a><span class="co"># Matriz de Cargas Factoriales (Loadings)</span></span>
-<span id="cb43-374"><a href="#cb43-374"></a>modelo_af <span class="ot">&lt;-</span> <span class="fu">factanal</span>(datos_reducidos, <span class="at">factors =</span> <span class="dv">2</span>, <span class="at">rotation =</span> <span class="st">&quot;varimax&quot;</span>)</span>
-<span id="cb43-375"><a href="#cb43-375"></a></span>
-<span id="cb43-376"><a href="#cb43-376"></a><span class="fu">print</span>(modelo_af<span class="sc">$</span>loadings, <span class="at">cutoff =</span> <span class="fl">0.3</span>)</span>
-<span id="cb43-377"><a href="#cb43-377"></a><span class="in">```</span></span>
+<span id="cb43-367"><a href="#cb43-367"></a>Vemos que el Factor1 absorbe tres variables de forma casi perfecta (Expensive, International y Family). Este factor mide el posicionamiento corporativo de la marca. Si una cerveza puntúa alto en este factor, el consumidor la percibe inmediatamente como una cerveza cara, internacional y exclusiva. Si puntúa bajo (negativo), es dominada por el concepto de &quot;Familia&quot;, siendo percibida como la marca nacional de toda la vida, cercana y tradicional.</span>
+<span id="cb43-368"><a href="#cb43-368"></a></span>
+<span id="cb43-369"><a href="#cb43-369"></a>Por otro lado, el Factor2 absorbe las otras dos variables con gran fuerza (Youthful y Bitter). Este factor mide el perfil organoléptico y su target. Una puntuación alta aquí define a la cerveza casi exclusivamente como una bebida para jóvenes, suave y ligera (alejada del amargor). Por el contrario, una puntuación baja (hacia los valores negativos) define a una cerveza para paladares hechos al amargor y, por tanto, más adultos.</span>
+<span id="cb43-370"><a href="#cb43-370"></a></span>
+<span id="cb43-371"><a href="#cb43-371"></a>Finalmente, la varainza explicada por el modelo viene dadda por SS loadings, Proportion Var y Cumulative Var. Como vemos en Proportion Var, el Factor 1 explica por sí solo el $53.1\%$ de la información total contenida en esas cinco variables, y el Factor 2 añade un $34.0\%$ de explicación.</span>
+<span id="cb43-372"><a href="#cb43-372"></a></span>
+<span id="cb43-373"><a href="#cb43-373"></a>En general, según **Cumulative Var, el modelo factorial explica el** $87.1\%$ de la varianza total.</span>
+<span id="cb43-374"><a href="#cb43-374"></a></span>
+<span id="cb43-375"><a href="#cb43-375"></a><span class="fu">## Clúster. K-Means. Aprendizaje automático no supervisado</span></span>
+<span id="cb43-376"><a href="#cb43-376"></a></span>
+<span id="cb43-377"><a href="#cb43-377"></a>Un **clúster (o conglomerado)** es un grupo de marcas (u observaciones) que comparten un perfil de percepción extremadamente similar entre sí, al mismo tiempo que son lo más diferentes posible de las marcas que pertenecen a otros grupos.</span>
 <span id="cb43-378"><a href="#cb43-378"></a></span>
-<span id="cb43-379"><a href="#cb43-379"></a>Los loadings son la parte central del análisis. Representan la correlación entre cada variable y el factor latente descubierto. Valores por encima de $0.50$ se consideran fuertes, y por encima de $0.8$ son extraordinarios:</span>
+<span id="cb43-379"><a href="#cb43-379"></a>Si el Análisis de Componentes Principales (ACP) o el Análisis Factorial nos servían para agrupar variables (reducir atributos), el **análisis de clúster sirve para agrupar sujetos u objetos (en este caso, marcas de cerveza)**. En este caso, descubrir los clústers del mercado, permite:</span>
 <span id="cb43-380"><a href="#cb43-380"></a></span>
-<span id="cb43-381"><a href="#cb43-381"></a>Vemos que el Factor1 absorbe tres variables de forma casi perfecta (Expensive, International y Family). Este factor mide el posicionamiento corporativo de la marca. Si una cerveza puntúa alto en este factor, el consumidor la percibe inmediatamente como una cerveza cara, internacional y exclusiva. Si puntúa bajo (negativo), es dominada por el concepto de &quot;Familia&quot;, siendo percibida como la marca nacional de toda la vida, cercana y tradicional.</span>
+<span id="cb43-381"><a href="#cb43-381"></a><span class="ss">1.  </span>Identificar competidores directos: Las marcas que caen en el mismo clúster luchan exactamente por el mismo espacio mental del consumidor.</span>
 <span id="cb43-382"><a href="#cb43-382"></a></span>
-<span id="cb43-383"><a href="#cb43-383"></a>Por otro lado, el Factor2 absorbe las otras dos variables con gran fuerza (Youthful y Bitter). Este factor mide el perfil organoléptico y su target. Una puntuación alta aquí define a la cerveza casi exclusivamente como una bebida para jóvenes, suave y ligera (alejada del amargor). Por el contrario, una puntuación baja (hacia los valores negativos) define a una cerveza para paladares hechos al amargor y, por tanto, más adultos.</span>
+<span id="cb43-383"><a href="#cb43-383"></a><span class="ss">2.  </span>Detectar nichos vacíos: Zonas del mapa donde no hay ningún clúster de marcas y donde se podría lanzar un nuevo producto.</span>
 <span id="cb43-384"><a href="#cb43-384"></a></span>
-<span id="cb43-385"><a href="#cb43-385"></a>Finalmente, la varainza explicada por el modelo viene dadda por SS loadings, Proportion Var y Cumulative Var. Como vemos en Proportion Var, el Factor 1 explica por sí solo el $53.1\%$ de la información total contenida en esas cinco variables, y el Factor 2 añade un $34.0\%$ de explicación. </span>
+<span id="cb43-385"><a href="#cb43-385"></a>El método **K-Means** es un algoritmo de aprendizaje no supervisado de particionamiento. Su objetivo es dividir un conjunto de datos en $K$ grupos fijos (definidos previamente por el analista). Matemáticamente:</span>
 <span id="cb43-386"><a href="#cb43-386"></a></span>
-<span id="cb43-387"><a href="#cb43-387"></a>En general, según **Cumulative Var, el modelo factorial explica el $87.1\%$ de la varianza total**.</span>
+<span id="cb43-387"><a href="#cb43-387"></a><span class="ss">1.  </span>**Asignación inicial**: El algoritmo selecciona de forma aleatoria $K$ puntos en el espacio de datos, los cuales actúan como los &quot;centros&quot; iniciales de los grupos (llamados centroides).</span>
 <span id="cb43-388"><a href="#cb43-388"></a></span>
-<span id="cb43-389"><a href="#cb43-389"></a></span>
+<span id="cb43-389"><a href="#cb43-389"></a><span class="ss">2.  </span>**Cálculo de Distancia**: Cada marca de cerveza se asigna al centroide más cercano utilizando una medida de distancia geométrica (normalmente la distancia euclídea).</span>
 <span id="cb43-390"><a href="#cb43-390"></a></span>
-<span id="cb43-391"><a href="#cb43-391"></a><span class="fu">## Clúster. K-Means. Aprendizaje automático no supervisado</span></span>
+<span id="cb43-391"><a href="#cb43-391"></a><span class="ss">3.  </span>**Recálculo de Centros**: Una vez asignadas todas las cervezas, el centroide se mueve al centro real (la media matemática) de todas las marcas que componen ese grupo.</span>
 <span id="cb43-392"><a href="#cb43-392"></a></span>
-<span id="cb43-393"><a href="#cb43-393"></a>Un **clúster (o conglomerado)** es un grupo de marcas (u observaciones) que comparten un perfil de percepción extremadamente similar entre sí, al mismo tiempo que son lo más diferentes posible de las marcas que pertenecen a otros grupos.</span>
+<span id="cb43-393"><a href="#cb43-393"></a><span class="ss">4.  </span>**Iteración**: Los pasos 2 y 3 se repiten una y otra vez de forma automática hasta que las marcas ya no cambian de grupo. El algoritmo se detiene cuando ha logrado minimizar la varianza interna de cada clúster.</span>
 <span id="cb43-394"><a href="#cb43-394"></a></span>
-<span id="cb43-395"><a href="#cb43-395"></a>Si el Análisis de Componentes Principales (ACP) o el Análisis Factorial nos servían para agrupar variables (reducir atributos), el **análisis de clúster sirve para agrupar sujetos u objetos (en este caso, marcas de cerveza)**. En este caso, descubrir los clústers del mercado, permite:</span>
+<span id="cb43-395"><a href="#cb43-395"></a>Según hemos ido viendo en nuestro análisis, podemos separar las marcas de cerveza en tres grupos, tal y como vimos en el biplot:</span>
 <span id="cb43-396"><a href="#cb43-396"></a></span>
-<span id="cb43-397"><a href="#cb43-397"></a><span class="ss">1. </span>Identificar competidores directos: Las marcas que caen en el mismo clúster luchan exactamente por el mismo espacio mental del consumidor.</span>
-<span id="cb43-398"><a href="#cb43-398"></a></span>
-<span id="cb43-399"><a href="#cb43-399"></a><span class="ss">2. </span>Detectar nichos vacíos: Zonas del mapa donde no hay ningún clúster de marcas y donde se podría lanzar un nuevo producto.</span>
-<span id="cb43-400"><a href="#cb43-400"></a></span>
-<span id="cb43-401"><a href="#cb43-401"></a>El método **K-Means** es un algoritmo de aprendizaje no supervisado de particionamiento. Su objetivo es dividir un conjunto de datos en $K$ grupos fijos (definidos previamente por el analista). Matemáticamente:</span>
-<span id="cb43-402"><a href="#cb43-402"></a></span>
-<span id="cb43-403"><a href="#cb43-403"></a><span class="ss">1. </span>**Asignación inicial**: El algoritmo selecciona de forma aleatoria $K$ puntos en el espacio de datos, los cuales actúan como los &quot;centros&quot; iniciales de los grupos (llamados centroides).</span>
+<span id="cb43-399"><a href="#cb43-399"></a><span class="in">```{r}</span></span>
+<span id="cb43-400"><a href="#cb43-400"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb43-401"><a href="#cb43-401"></a><span class="fu">biplot</span>(modelo_pca, <span class="at">scale =</span> <span class="dv">0</span>, <span class="at">cex =</span> <span class="fl">0.8</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb43-402"><a href="#cb43-402"></a>       <span class="at">main =</span> <span class="st">&quot;Biplot PCA&quot;</span>)</span>
+<span id="cb43-403"><a href="#cb43-403"></a><span class="in">```</span></span>
 <span id="cb43-404"><a href="#cb43-404"></a></span>
-<span id="cb43-405"><a href="#cb43-405"></a><span class="ss">2. </span>**Cálculo de Distancia**: Cada marca de cerveza se asigna al centroide más cercano utilizando una medida de distancia geométrica (normalmente la distancia euclídea).</span>
+<span id="cb43-405"><a href="#cb43-405"></a>Como vemos, tenemos tres grupos: **i)** Un grupo grande en el lado izquierdo (las cervezas tradicionales y familiares como Mahou, San Miguel, Cruzcampo); **ii)** Un par de marcas muy juntas en la parte superior derecha (Heineken y Coronita, enfocadas en jóvenes y noche); y **iii)** Un grupo en la parte inferior derecha (cervezas caras, internacionales o intensas como Bud y Voll-Damm).</span>
 <span id="cb43-406"><a href="#cb43-406"></a></span>
-<span id="cb43-407"><a href="#cb43-407"></a><span class="ss">3. </span>**Recálculo de Centros**: Una vez asignadas todas las cervezas, el centroide se mueve al centro real (la media matemática) de todas las marcas que componen ese grupo.</span>
+<span id="cb43-407"><a href="#cb43-407"></a>Por tanto, configuraremos el algoritmo para buscar $K = 3$ clústeres, coincidiendo con la estructura tripartita que descubrimos intuitivamente en los análisis anteriores.</span>
 <span id="cb43-408"><a href="#cb43-408"></a></span>
-<span id="cb43-409"><a href="#cb43-409"></a><span class="ss">4. </span>**Iteración**: Los pasos 2 y 3 se repiten una y otra vez de forma automática hasta que las marcas ya no cambian de grupo. El algoritmo se detiene cuando ha logrado minimizar la varianza interna de cada clúster.</span>
-<span id="cb43-410"><a href="#cb43-410"></a></span>
-<span id="cb43-411"><a href="#cb43-411"></a>Según hemos ido viendo en nuestro análisis, podemos separar las marcas de cerveza en tres grupos, tal y como vimos en el biplot:</span>
-<span id="cb43-412"><a href="#cb43-412"></a></span>
-<span id="cb43-415"><a href="#cb43-415"></a><span class="in">```{r}</span></span>
-<span id="cb43-416"><a href="#cb43-416"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb43-417"><a href="#cb43-417"></a><span class="fu">biplot</span>(modelo_pca, <span class="at">scale =</span> <span class="dv">0</span>, <span class="at">cex =</span> <span class="fl">0.8</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
-<span id="cb43-418"><a href="#cb43-418"></a>       <span class="at">main =</span> <span class="st">&quot;Biplot PCA&quot;</span>)</span>
-<span id="cb43-419"><a href="#cb43-419"></a><span class="in">```</span></span>
-<span id="cb43-420"><a href="#cb43-420"></a>Como vemos, tenemos tres grupos: **i)** Un grupo grande en el lado izquierdo (las cervezas tradicionales y familiares como Mahou, San Miguel, Cruzcampo); **ii)** Un par de marcas muy juntas en la parte superior derecha (Heineken y Coronita, enfocadas en jóvenes y noche); y **iii)** Un grupo en la parte inferior derecha (cervezas caras, internacionales o intensas como Bud y Voll-Damm).</span>
-<span id="cb43-421"><a href="#cb43-421"></a></span>
-<span id="cb43-422"><a href="#cb43-422"></a>Por tanto, configuraremos el algoritmo para buscar $K = 3$ clústeres, coincidiendo con la estructura tripartita que descubrimos intuitivamente en los análisis anteriores.</span>
-<span id="cb43-423"><a href="#cb43-423"></a></span>
-<span id="cb43-426"><a href="#cb43-426"></a><span class="in">```{r}</span></span>
-<span id="cb43-427"><a href="#cb43-427"></a><span class="fu">library</span>(stats)</span>
-<span id="cb43-428"><a href="#cb43-428"></a><span class="co"># Eestandarizamos los datos (Paso obligatorio antes de aplicar K-Means)</span></span>
-<span id="cb43-429"><a href="#cb43-429"></a>datos_escalados <span class="ot">&lt;-</span> <span class="fu">scale</span>(datos_analisis)</span>
-<span id="cb43-430"><a href="#cb43-430"></a></span>
-<span id="cb43-431"><a href="#cb43-431"></a><span class="co"># Semilla para reproducibilidad y ejecutar K-Means (K = 3 grupos)</span></span>
-<span id="cb43-432"><a href="#cb43-432"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb43-433"><a href="#cb43-433"></a>segmentacion_km <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(datos_escalados, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>) <span class="co"># Lo iteramos 25 veces</span></span>
-<span id="cb43-434"><a href="#cb43-434"></a></span>
-<span id="cb43-435"><a href="#cb43-435"></a><span class="co"># Guardamos el clúster asignado en el dataframe original como factor</span></span>
-<span id="cb43-436"><a href="#cb43-436"></a>datos_analisis<span class="sc">$</span>Cluster <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(segmentacion_km<span class="sc">$</span>cluster)</span>
-<span id="cb43-437"><a href="#cb43-437"></a></span>
-<span id="cb43-438"><a href="#cb43-438"></a><span class="co"># Mostramos la lista de asignación por pantalla</span></span>
-<span id="cb43-439"><a href="#cb43-439"></a>datos_analisis[, <span class="st">&quot;Cluster&quot;</span>, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
-<span id="cb43-440"><a href="#cb43-440"></a></span>
-<span id="cb43-441"><a href="#cb43-441"></a><span class="in">```</span></span>
-<span id="cb43-442"><a href="#cb43-442"></a></span>
-<span id="cb43-443"><a href="#cb43-443"></a></span>
-<span id="cb43-444"><a href="#cb43-444"></a></span>
-<span id="cb43-447"><a href="#cb43-447"></a><span class="in">```{r}</span></span>
-<span id="cb43-448"><a href="#cb43-448"></a><span class="co"># GRAFICAMOS</span></span>
-<span id="cb43-449"><a href="#cb43-449"></a>modelo_pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(datos_escalados, <span class="at">center =</span> <span class="cn">FALSE</span>, <span class="at">scale. =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb43-450"><a href="#cb43-450"></a>df_grafico <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(modelo_pca<span class="sc">$</span>x[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
-<span id="cb43-451"><a href="#cb43-451"></a>df_grafico<span class="sc">$</span>Marca   <span class="ot">&lt;-</span> <span class="fu">rownames</span>(df_grafico)</span>
-<span id="cb43-452"><a href="#cb43-452"></a>df_grafico<span class="sc">$</span>Cluster <span class="ot">&lt;-</span> datos_analisis<span class="sc">$</span>Cluster</span>
-<span id="cb43-453"><a href="#cb43-453"></a></span>
-<span id="cb43-454"><a href="#cb43-454"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb43-455"><a href="#cb43-455"></a></span>
-<span id="cb43-456"><a href="#cb43-456"></a><span class="fu">ggplot</span>(df_grafico, <span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2, <span class="at">color =</span> Cluster, <span class="at">label =</span> Marca)) <span class="sc">+</span></span>
-<span id="cb43-457"><a href="#cb43-457"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb43-458"><a href="#cb43-458"></a>  <span class="fu">geom_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb43-459"><a href="#cb43-459"></a>  <span class="fu">stat_ellipse</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Cluster), <span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">geom =</span> <span class="st">&quot;polygon&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;blank&quot;</span>) <span class="sc">+</span></span>
-<span id="cb43-460"><a href="#cb43-460"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Segmentación Estratégica de Marcas de Cerveza (K-Means)&quot;</span>,</span>
-<span id="cb43-461"><a href="#cb43-461"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Agrupación basada en perfiles de percepción independientes&quot;</span>,</span>
-<span id="cb43-462"><a href="#cb43-462"></a>       <span class="at">x =</span> <span class="st">&quot;Dimensión 1 (Estatus / Globalidad)&quot;</span>,</span>
-<span id="cb43-463"><a href="#cb43-463"></a>       <span class="at">y =</span> <span class="st">&quot;Dimensión 2 (Sabor / Juventud)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb43-464"><a href="#cb43-464"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb43-465"><a href="#cb43-465"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
-<span id="cb43-466"><a href="#cb43-466"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb43-467"><a href="#cb43-467"></a>        <span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="sc">+</span></span>
-<span id="cb43-468"><a href="#cb43-468"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb43-469"><a href="#cb43-469"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>)</span>
-<span id="cb43-470"><a href="#cb43-470"></a><span class="in">```</span></span>
-<span id="cb43-471"><a href="#cb43-471"></a></span>
-<span id="cb43-472"><a href="#cb43-472"></a></span>
-<span id="cb43-473"><a href="#cb43-473"></a>Obesrvamos así cómo se segmenta el mercado en tres zonas. La división más profunda y radical aísla a Heineken y Coronita del resto de competidores, posicionándolas en un nicho único centrado en la imagen social, la juventud y el ocio nocturno. Alejado de este enfoque lúdico, el resto del mercado se escinde en dos frentes opuestos: las marcas orientadas al consumo masivo diario y aquellas que apelan a un consumidor en busca de una experiencia de sabor más exigente.</span>
-<span id="cb43-474"><a href="#cb43-474"></a></span>
-<span id="cb43-475"><a href="#cb43-475"></a>En el territorio cotidiano compiten ferozmente marcas nacionales como Mahou, San Miguel, Cruzcampo, Estrella y Amstel por dominar la rutina y el entorno familiar; aquí destaca la percepción casi idéntica del consumidor entre Mahou y San Miguel, frente al perfil ligeramente más amargo de Amstel. Por su parte, el bloque formado por Bud, Carlsberg y Voll-Damm se reserva para quienes priorizan el precio premium, la internacionalidad o un carácter organoléptico intenso. </span>
-<span id="cb43-476"><a href="#cb43-476"></a></span>
-<span id="cb43-477"><a href="#cb43-477"></a>*En definitiva, los datos confirman que el éxito en este sector no pasa por gustar a todo el mundo, sino por elegir y dominar una batalla específica: la socialización, la rutina o la exclusividad.*</span>
-<span id="cb43-478"><a href="#cb43-478"></a></span>
-<span id="cb43-479"><a href="#cb43-479"></a></span>
-<span id="cb43-480"><a href="#cb43-480"></a></span>
-<span id="cb43-481"><a href="#cb43-481"></a></span>
-<span id="cb43-482"><a href="#cb43-482"></a></span>
-<span id="cb43-483"><a href="#cb43-483"></a></span>
-<span id="cb43-484"><a href="#cb43-484"></a></span>
-<span id="cb43-485"><a href="#cb43-485"></a></span>
-<span id="cb43-486"><a href="#cb43-486"></a></span>
-<span id="cb43-487"><a href="#cb43-487"></a></span>
-<span id="cb43-488"><a href="#cb43-488"></a></span>
-<span id="cb43-489"><a href="#cb43-489"></a></span>
-<span id="cb43-490"><a href="#cb43-490"></a></span>
-<span id="cb43-491"><a href="#cb43-491"></a></span>
-<span id="cb43-492"><a href="#cb43-492"></a></span>
-<span id="cb43-493"><a href="#cb43-493"></a></span>
-<span id="cb43-494"><a href="#cb43-494"></a></span>
-<span id="cb43-495"><a href="#cb43-495"></a></span>
-<span id="cb43-496"><a href="#cb43-496"></a></span>
-<span id="cb43-497"><a href="#cb43-497"></a></span>
-<span id="cb43-498"><a href="#cb43-498"></a></span>
-<span id="cb43-499"><a href="#cb43-499"></a></span>
-<span id="cb43-500"><a href="#cb43-500"></a></span>
-<span id="cb43-501"><a href="#cb43-501"></a></span>
-<span id="cb43-502"><a href="#cb43-502"></a></span>
-<span id="cb43-503"><a href="#cb43-503"></a></span>
-<span id="cb43-504"><a href="#cb43-504"></a></span>
-<span id="cb43-505"><a href="#cb43-505"></a></span>
-<span id="cb43-506"><a href="#cb43-506"></a></span>
-<span id="cb43-507"><a href="#cb43-507"></a></span>
-<span id="cb43-508"><a href="#cb43-508"></a></span>
+<span id="cb43-411"><a href="#cb43-411"></a><span class="in">```{r}</span></span>
+<span id="cb43-412"><a href="#cb43-412"></a><span class="fu">library</span>(stats)</span>
+<span id="cb43-413"><a href="#cb43-413"></a><span class="co"># Eestandarizamos los datos (Paso obligatorio antes de aplicar K-Means)</span></span>
+<span id="cb43-414"><a href="#cb43-414"></a>datos_escalados <span class="ot">&lt;-</span> <span class="fu">scale</span>(datos_analisis)</span>
+<span id="cb43-415"><a href="#cb43-415"></a></span>
+<span id="cb43-416"><a href="#cb43-416"></a><span class="co"># Semilla para reproducibilidad y ejecutar K-Means (K = 3 grupos)</span></span>
+<span id="cb43-417"><a href="#cb43-417"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb43-418"><a href="#cb43-418"></a>segmentacion_km <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(datos_escalados, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>) <span class="co"># Lo iteramos 25 veces</span></span>
+<span id="cb43-419"><a href="#cb43-419"></a></span>
+<span id="cb43-420"><a href="#cb43-420"></a><span class="co"># Guardamos el clúster asignado en el dataframe original como factor</span></span>
+<span id="cb43-421"><a href="#cb43-421"></a>datos_analisis<span class="sc">$</span>Cluster <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(segmentacion_km<span class="sc">$</span>cluster)</span>
+<span id="cb43-422"><a href="#cb43-422"></a></span>
+<span id="cb43-423"><a href="#cb43-423"></a><span class="co"># Mostramos la lista de asignación por pantalla</span></span>
+<span id="cb43-424"><a href="#cb43-424"></a>datos_analisis[, <span class="st">&quot;Cluster&quot;</span>, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb43-425"><a href="#cb43-425"></a></span>
+<span id="cb43-426"><a href="#cb43-426"></a><span class="in">```</span></span>
+<span id="cb43-427"><a href="#cb43-427"></a></span>
+<span id="cb43-430"><a href="#cb43-430"></a><span class="in">```{r}</span></span>
+<span id="cb43-431"><a href="#cb43-431"></a><span class="co"># GRAFICAMOS</span></span>
+<span id="cb43-432"><a href="#cb43-432"></a>modelo_pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(datos_escalados, <span class="at">center =</span> <span class="cn">FALSE</span>, <span class="at">scale. =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb43-433"><a href="#cb43-433"></a>df_grafico <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(modelo_pca<span class="sc">$</span>x[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb43-434"><a href="#cb43-434"></a>df_grafico<span class="sc">$</span>Marca   <span class="ot">&lt;-</span> <span class="fu">rownames</span>(df_grafico)</span>
+<span id="cb43-435"><a href="#cb43-435"></a>df_grafico<span class="sc">$</span>Cluster <span class="ot">&lt;-</span> datos_analisis<span class="sc">$</span>Cluster</span>
+<span id="cb43-436"><a href="#cb43-436"></a></span>
+<span id="cb43-437"><a href="#cb43-437"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb43-438"><a href="#cb43-438"></a></span>
+<span id="cb43-439"><a href="#cb43-439"></a><span class="fu">ggplot</span>(df_grafico, <span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2, <span class="at">color =</span> Cluster, <span class="at">label =</span> Marca)) <span class="sc">+</span></span>
+<span id="cb43-440"><a href="#cb43-440"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb43-441"><a href="#cb43-441"></a>  <span class="fu">geom_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb43-442"><a href="#cb43-442"></a>  <span class="fu">stat_ellipse</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Cluster), <span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">geom =</span> <span class="st">&quot;polygon&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;blank&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-443"><a href="#cb43-443"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Segmentación Estratégica de Marcas de Cerveza (K-Means)&quot;</span>,</span>
+<span id="cb43-444"><a href="#cb43-444"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Agrupación basada en perfiles de percepción independientes&quot;</span>,</span>
+<span id="cb43-445"><a href="#cb43-445"></a>       <span class="at">x =</span> <span class="st">&quot;Dimensión 1 (Estatus / Globalidad)&quot;</span>,</span>
+<span id="cb43-446"><a href="#cb43-446"></a>       <span class="at">y =</span> <span class="st">&quot;Dimensión 2 (Sabor / Juventud)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-447"><a href="#cb43-447"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb43-448"><a href="#cb43-448"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb43-449"><a href="#cb43-449"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb43-450"><a href="#cb43-450"></a>        <span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-451"><a href="#cb43-451"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb43-452"><a href="#cb43-452"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>)</span>
+<span id="cb43-453"><a href="#cb43-453"></a><span class="in">```</span></span>
+<span id="cb43-454"><a href="#cb43-454"></a></span>
+<span id="cb43-455"><a href="#cb43-455"></a>Obesrvamos así cómo se segmenta el mercado en tres zonas. La división más profunda y radical aísla a Heineken y Coronita del resto de competidores, posicionándolas en un nicho único centrado en la imagen social, la juventud y el ocio nocturno. Alejado de este enfoque lúdico, el resto del mercado se escinde en dos frentes opuestos: las marcas orientadas al consumo masivo diario y aquellas que apelan a un consumidor en busca de una experiencia de sabor más exigente.</span>
+<span id="cb43-456"><a href="#cb43-456"></a></span>
+<span id="cb43-457"><a href="#cb43-457"></a>En el territorio cotidiano compiten ferozmente marcas nacionales como Mahou, San Miguel, Cruzcampo, Estrella y Amstel por dominar la rutina y el entorno familiar; aquí destaca la percepción casi idéntica del consumidor entre Mahou y San Miguel, frente al perfil ligeramente más amargo de Amstel. Por su parte, el bloque formado por Bud, Carlsberg y Voll-Damm se reserva para quienes priorizan el precio premium, la internacionalidad o un carácter organoléptico intenso.</span>
+<span id="cb43-458"><a href="#cb43-458"></a></span>
+<span id="cb43-459"><a href="#cb43-459"></a>*En definitiva, los datos confirman que el éxito en este sector no pasa por gustar a todo el mundo, sino por elegir y dominar una batalla específica: la socialización, la rutina o la exclusividad.*</span>
 </code></pre></div><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
